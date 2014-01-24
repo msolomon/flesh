@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @game.name %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @game.slug %>
+</p>
+
+<p>
+  <strong>Organization:</strong>
+  <%= @game.organization %>
+</p>
+
+<p>
+  <strong>Timezone:</strong>
+  <%= @game.timezone %>
+</p>
+
+<p>
+  <strong>Registration start:</strong>
+  <%= @game.registration_start %>
+</p>
+
+<p>
+  <strong>Registration end:</strong>
+  <%= @game.registration_end %>
+</p>
+
+<p>
+  <strong>Game start:</strong>
+  <%= @game.game_start %>
+</p>
+
+<p>
+  <strong>Game end:</strong>
+  <%= @game.game_end %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @game.description %>
+</p>
+
+<%= link_to 'Edit', edit_game_path(@game) %> |
+<%= link_to 'Back', games_path %>
