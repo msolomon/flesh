@@ -6,7 +6,6 @@ class CreateOrganizations < ActiveRecord::Migration
       t.string :location
       t.string :default_timezone
       t.string :description
-      t.has_many :user
 
       t.timestamps
     end
