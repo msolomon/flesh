@@ -2,6 +2,7 @@ development:
   adapter: postgresql
   encoding: unicode
   database: flesh
+  port: 5432
   pool: 5
   username: postgres
   password:
@@ -31,6 +32,7 @@ test:
   adapter: postgresql
   encoding: unicode
   database: flesh_test
+  port: 5432
   pool: 5
   username: postgres
   password:
