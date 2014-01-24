@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
-  resources :players
+  namespace :api do
+    resources :players
 
-  resources :games
+    resources :games
 
-  resources :organizations
+    resources :organizations
 
-  devise_for :users, ActiveAdmin::Devise.config
+    devise_for :users, ActiveAdmin::Devise.config
+  end
+
   ActiveAdmin.routes(self)
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

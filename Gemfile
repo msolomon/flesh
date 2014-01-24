@@ -70,3 +70,5 @@ gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.1'
 gem 'faker'
 
 gem 'populator'
+
+gem 'oj'

@@ -134,6 +134,7 @@ GEM
     mime-types (1.25.1)
     minitest (5.2.2)
     multi_json (1.8.4)
+    oj (2.5.4)
     orm_adapter (0.5.0)
     pg (0.17.1)
     polyglot (0.3.3)
@@ -227,6 +228,7 @@ DEPENDENCIES
   formtastic!
   haml (~> 4.0)
   jquery-rails
+  oj
   pg
   polyamorous!
   populator
