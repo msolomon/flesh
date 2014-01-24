@@ -63,4 +63,7 @@ gem 'rspec-rails', '2.14.0', group: [:development, :test]
 
 gem 'factory_girl_rails', '4.2.0', group: [:test]
 
+gem "formtastic", github: "justinfrench/formtastic"
+
+gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.1"
 
