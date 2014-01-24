@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20140124051308) do
     t.string   "name"
     t.string   "slug"
     t.string   "location"
-    t.string   "default_timezone"
+    t.string   "timezone"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -1198,3 +1198,835 @@ Migrating to CreateGames (20140124051308)
   [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140124051308"]]
   [1m[35m (0.4ms)[0m  COMMIT
   [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-23 21:17:12 -0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+ActionController::RoutingError (uninitialized constant WelcomeController):
+  activesupport (4.1.0.beta1) lib/active_support/inflector/methods.rb:238:in `const_get'
+  activesupport (4.1.0.beta1) lib/active_support/inflector/methods.rb:238:in `block in constantize'
+  activesupport (4.1.0.beta1) lib/active_support/inflector/methods.rb:236:in `each'
+  activesupport (4.1.0.beta1) lib/active_support/inflector/methods.rb:236:in `inject'
+  activesupport (4.1.0.beta1) lib/active_support/inflector/methods.rb:236:in `constantize'
+  actionpack (4.1.0.beta1) lib/action_dispatch/routing/route_set.rb:76:in `controller_reference'
+  actionpack (4.1.0.beta1) lib/action_dispatch/routing/route_set.rb:66:in `controller'
+  actionpack (4.1.0.beta1) lib/action_dispatch/routing/route_set.rb:44:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/journey/router.rb:71:in `block in call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/journey/router.rb:59:in `each'
+  actionpack (4.1.0.beta1) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/routing/route_set.rb:682:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/middleware/flash.rb:241:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/middleware/cookies.rb:486:in `call'
+  activerecord (4.1.0.beta1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.1.0.beta1) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  activerecord (4.1.0.beta1) lib/active_record/migration.rb:380:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.0.beta1) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.0.beta1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/middleware/reloader.rb:64:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.0.beta1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.0.beta1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.0.beta1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.0.beta1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.0.beta1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.0.beta1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.0.beta1) lib/active_support/cache/strategy/local_cache.rb:86:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.0.beta1) lib/rails/engine.rb:516:in `call'
+  railties (4.1.0.beta1) lib/rails/application.rb:142:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/mike/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/mike/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/mike/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/mike/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.1.0.beta1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.9ms)
+  Rendered /Users/mike/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.1.0.beta1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.3ms)
+  Rendered /Users/mike/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.1.0.beta1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.8ms)
+  Rendered /Users/mike/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.1.0.beta1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (42.4ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+Processing by Admin::DashboardController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1
+  Rendered /Users/mike/.rvm/gems/ruby-2.0.0-p247/bundler/gems/active_admin-246814b47ffc/app/views/active_admin/page/index.html.arb (16.4ms)
+Completed 200 OK in 40ms (Views: 18.5ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/active_admin/print.css?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/jquery.ui.datepicker.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/jquery.ui.button.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/jquery.ui.draggable.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/jquery.ui.dialog.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/jquery.ui.resizable.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/jquery.ui.sortable.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/active_admin/base.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/active_admin/lib/batch_actions.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/active_admin/lib/checkbox-toggler.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/active_admin/lib/dropdown-menu.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/active_admin/lib/has_many.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/active_admin/lib/modal_dialog.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/active_admin/lib/popover.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/active_admin/lib/table-checkbox-toggler.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/active_admin/ext/jquery-ui.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/active_admin/ext/jquery.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/active_admin/application.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/assets/active_admin.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:16 -0800
+
+
+Started GET "/admin/organizations" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+Processing by Admin::OrganizationsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "organizations"  LIMIT 30 OFFSET 0) subquery_for_count
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  Rendered /Users/mike/.rvm/gems/ruby-2.0.0-p247/bundler/gems/active_admin-246814b47ffc/app/views/active_admin/resource/index.html.arb (60.3ms)
+Completed 200 OK in 68ms (Views: 62.3ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/active_admin/print.css?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/jquery.ui.datepicker.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/jquery.ui.button.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/jquery.ui.draggable.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/jquery.ui.resizable.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/jquery.ui.dialog.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/jquery.ui.sortable.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/active_admin/base.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/active_admin/lib/batch_actions.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/active_admin/lib/checkbox-toggler.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/active_admin/lib/dropdown-menu.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/active_admin/lib/has_many.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/active_admin/lib/modal_dialog.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/active_admin/lib/popover.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/active_admin/lib/table-checkbox-toggler.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/active_admin/ext/jquery-ui.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/active_admin/ext/jquery.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/active_admin/application.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/active_admin.js?body=1" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/assets/active_admin/datepicker/datepicker-input-icon.png" for 127.0.0.1 at 2014-01-23 21:17:18 -0800
+
+
+Started GET "/admin/organizations/new" for 127.0.0.1 at 2014-01-23 21:17:21 -0800
+Processing by Admin::OrganizationsController#new as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1
+  Rendered /Users/mike/.rvm/gems/ruby-2.0.0-p247/bundler/gems/active_admin-246814b47ffc/app/views/active_admin/resource/new.html.arb (19.1ms)
+Completed 500 Internal Server Error in 69ms
+
+ActionView::Template::Error (default_timezone is defined by Active Record):
+    1: insert_tag renderer_for(:new)
+  activerecord (4.1.0.beta1) lib/active_record/attribute_methods.rb:101:in `instance_method_already_implemented?'
+  activemodel (4.1.0.beta1) lib/active_model/attribute_methods.rb:293:in `block in define_attribute_method'
+  activemodel (4.1.0.beta1) lib/active_model/attribute_methods.rb:290:in `each'
+  activemodel (4.1.0.beta1) lib/active_model/attribute_methods.rb:290:in `define_attribute_method'
+  activemodel (4.1.0.beta1) lib/active_model/attribute_methods.rb:257:in `block in define_attribute_methods'
+  activemodel (4.1.0.beta1) lib/active_model/attribute_methods.rb:257:in `each'
+  activemodel (4.1.0.beta1) lib/active_model/attribute_methods.rb:257:in `define_attribute_methods'
+  activerecord (4.1.0.beta1) lib/active_record/attribute_methods.rb:72:in `block in define_attribute_methods'
+  /Users/mike/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/mutex_m.rb:73:in `synchronize'
+  /Users/mike/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/mutex_m.rb:73:in `mu_synchronize'
+  activerecord (4.1.0.beta1) lib/active_record/attribute_methods.rb:69:in `define_attribute_methods'
+  activerecord (4.1.0.beta1) lib/active_record/attribute_methods.rb:207:in `respond_to?'
+  actionpack (4.1.0.beta1) lib/action_controller/model_naming.rb:5:in `convert_to_model'
+  actionview (4.1.0.beta1) lib/action_view/helpers/form_helper.rb:441:in `apply_form_for_options!'
+  actionview (4.1.0.beta1) lib/action_view/helpers/form_helper.rb:425:in `form_for'
+  haml (4.0.5) lib/haml/helpers/action_view_mods.rb:139:in `form_for_with_haml'
+  haml (4.0.5) lib/haml/helpers/action_view_xss_mods.rb:28:in `form_for_with_haml_xss'
+  /Users/mike/.rvmruby-2.0.0 (p247) bundler/gems/formtastic-dc5c0472d0fb/lib/formtastic/helpers/form_helper.rb:167:in `block in semantic_form_for'
+  /Users/mike/.rvmruby-2.0.0 (p247) bundler/gems/formtastic-dc5c0472d0fb/lib/formtastic/helpers/form_helper.rb:190:in `with_custom_field_error_proc'
+  /Users/mike/.rvmruby-2.0.0 (p247) bundler/gems/formtastic-dc5c0472d0fb/lib/formtastic/helpers/form_helper.rb:166:in `semantic_form_for'
+  /Users/mike/.rvmruby-2.0.0 (p247) bundler/gems/active_admin-246814b47ffc/lib/active_admin/view_helpers/form_helper.rb:13:in `active_admin_form_for'
+  arbre (1.0.1) lib/arbre/element.rb:175:in `method_missing'
+  /Users/mike/.rvmruby-2.0.0 (p247) bundler/gems/active_admin-246814b47ffc/lib/active_admin/views/pages/form.rb:22:in `main_content'
+  /Users/mike/.rvmruby-2.0.0 (p247) bundler/gems/active_admin-246814b47ffc/lib/active_admin/views/pages/base.rb:83:in `block (2 levels) in build_main_content_wrapper'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:31:in `block in build_tag'
+  arbre (1.0.1) lib/arbre/context.rb:92:in `with_current_arbre_element'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:49:in `with_current_arbre_element'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:26:in `build_tag'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:39:in `insert_tag'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:14:in `div'
+  /Users/mike/.rvmruby-2.0.0 (p247) bundler/gems/active_admin-246814b47ffc/lib/active_admin/views/pages/base.rb:82:in `block in build_main_content_wrapper'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:31:in `block in build_tag'
+  arbre (1.0.1) lib/arbre/context.rb:92:in `with_current_arbre_element'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:49:in `with_current_arbre_element'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:26:in `build_tag'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:39:in `insert_tag'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:14:in `div'
+  /Users/mike/.rvmruby-2.0.0 (p247) bundler/gems/active_admin-246814b47ffc/lib/active_admin/views/pages/base.rb:81:in `build_main_content_wrapper'
+  /Users/mike/.rvmruby-2.0.0 (p247) bundler/gems/active_admin-246814b47ffc/lib/active_admin/views/pages/base.rb:65:in `block in build_page_content'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:31:in `block in build_tag'
+  arbre (1.0.1) lib/arbre/context.rb:92:in `with_current_arbre_element'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:49:in `with_current_arbre_element'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:26:in `build_tag'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:39:in `insert_tag'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:14:in `div'
+  /Users/mike/.rvmruby-2.0.0 (p247) bundler/gems/active_admin-246814b47ffc/lib/active_admin/views/pages/base.rb:64:in `build_page_content'
+  /Users/mike/.rvmruby-2.0.0 (p247) bundler/gems/active_admin-246814b47ffc/lib/active_admin/views/pages/base.rb:47:in `block (2 levels) in build_page'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:31:in `block in build_tag'
+  arbre (1.0.1) lib/arbre/context.rb:92:in `with_current_arbre_element'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:49:in `with_current_arbre_element'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:26:in `build_tag'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:39:in `insert_tag'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:14:in `div'
+  /Users/mike/.rvmruby-2.0.0 (p247) bundler/gems/active_admin-246814b47ffc/lib/active_admin/views/pages/base.rb:44:in `block in build_page'
+  arbre (1.0.1) lib/arbre/context.rb:92:in `with_current_arbre_element'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:49:in `with_current_arbre_element'
+  /Users/mike/.rvmruby-2.0.0 (p247) bundler/gems/active_admin-246814b47ffc/lib/active_admin/views/pages/base.rb:43:in `build_page'
+  /Users/mike/.rvmruby-2.0.0 (p247) bundler/gems/active_admin-246814b47ffc/lib/active_admin/views/pages/base.rb:10:in `build'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:30:in `block in build_tag'
+  arbre (1.0.1) lib/arbre/context.rb:92:in `with_current_arbre_element'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:26:in `build_tag'
+  arbre (1.0.1) lib/arbre/element/builder_methods.rb:39:in `insert_tag'
+  /Users/mike/.rvmruby-2.0.0 (p247) bundler/gems/active_admin-246814b47ffc/app/views/active_admin/resource/new.html.arb:1:in `block in ___sers_mike__rvm_gems_ruby_______p____bundler_gems_active_admin_______b__ffc_app_views_active_admin_resource_new_html_arb__3064800324689450147_70208234891600'
+  arbre (1.0.1) lib/arbre/context.rb:45:in `instance_eval'
+  arbre (1.0.1) lib/arbre/context.rb:45:in `initialize'
+  /Users/mike/.rvmruby-2.0.0 (p247) bundler/gems/active_admin-246814b47ffc/app/views/active_admin/resource/new.html.arb:1:in `new'
+  /Users/mike/.rvmruby-2.0.0 (p247) bundler/gems/active_admin-246814b47ffc/app/views/active_admin/resource/new.html.arb:1:in `___sers_mike__rvm_gems_ruby_______p____bundler_gems_active_admin_______b__ffc_app_views_active_admin_resource_new_html_arb__3064800324689450147_70208234891600'
+  actionview (4.1.0.beta1) lib/action_view/template.rb:143:in `block in render'
+  activesupport (4.1.0.beta1) lib/active_support/notifications.rb:161:in `instrument'
+  actionview (4.1.0.beta1) lib/action_view/template.rb:337:in `instrument'
+  actionview (4.1.0.beta1) lib/action_view/template.rb:141:in `render'
+  actionview (4.1.0.beta1) lib/action_view/renderer/template_renderer.rb:49:in `block (2 levels) in render_template'
+  actionview (4.1.0.beta1) lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+  activesupport (4.1.0.beta1) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.1.0.beta1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.1.0.beta1) lib/active_support/notifications.rb:159:in `instrument'
+  actionview (4.1.0.beta1) lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+  actionview (4.1.0.beta1) lib/action_view/renderer/template_renderer.rb:48:in `block in render_template'
+  actionview (4.1.0.beta1) lib/action_view/renderer/template_renderer.rb:56:in `render_with_layout'
+  actionview (4.1.0.beta1) lib/action_view/renderer/template_renderer.rb:47:in `render_template'
+  actionview (4.1.0.beta1) lib/action_view/renderer/template_renderer.rb:17:in `render'
+  actionview (4.1.0.beta1) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.1.0.beta1) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.1.0.beta1) lib/action_view/rendering.rb:99:in `_render_template'
+  actionpack (4.1.0.beta1) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.1.0.beta1) lib/action_view/rendering.rb:82:in `render_to_body'
+  actionpack (4.1.0.beta1) lib/action_controller/metal/rendering.rb:30:in `render_to_body'
+  actionpack (4.1.0.beta1) lib/action_controller/metal/renderers.rb:32:in `render_to_body'
+  actionpack (4.1.0.beta1) lib/abstract_controller/rendering.rb:24:in `render'
+  actionpack (4.1.0.beta1) lib/action_controller/metal/rendering.rb:14:in `render'
+  actionpack (4.1.0.beta1) lib/action_controller/metal/instrumentation.rb:41:in `block (2 levels) in render'
+  activesupport (4.1.0.beta1) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /Users/mike/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/benchmark.rb:296:in `realtime'
+  activesupport (4.1.0.beta1) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.1.0.beta1) lib/action_controller/metal/instrumentation.rb:41:in `block in render'
+  actionpack (4.1.0.beta1) lib/action_controller/metal/instrumentation.rb:84:in `cleanup_view_runtime'
+  activerecord (4.1.0.beta1) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.1.0.beta1) lib/action_controller/metal/instrumentation.rb:40:in `render'
+  actionpack (4.1.0.beta1) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.1.0.beta1) lib/action_controller/metal/responder.rb:238:in `default_render'
+  actionpack (4.1.0.beta1) lib/action_controller/metal/responder.rb:165:in `to_html'
+  responders (1.0.0) lib/responders/flash_responder.rb:104:in `to_html'
+  actionpack (4.1.0.beta1) lib/action_controller/metal/responder.rb:158:in `respond'
+  actionpack (4.1.0.beta1) lib/action_controller/metal/responder.rb:151:in `call'
+  actionpack (4.1.0.beta1) lib/action_controller/metal/mime_responds.rb:370:in `respond_with'
+  inherited_resources (1.4.1) lib/inherited_resources/actions.rb:19:in `new'
+  actionpack (4.1.0.beta1) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.1.0.beta1) lib/abstract_controller/base.rb:189:in `process_action'
+  actionpack (4.1.0.beta1) lib/action_controller/metal/rendering.rb:8:in `process_action'
+  actionpack (4.1.0.beta1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.1.0.beta1) lib/active_support/callbacks.rb:113:in `call'
+  activesupport (4.1.0.beta1) lib/active_support/callbacks.rb:113:in `call'
+  activesupport (4.1.0.beta1) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.0.beta1) lib/active_support/callbacks.rb:166:in `call'
+  activesupport (4.1.0.beta1) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.0.beta1) lib/active_support/callbacks.rb:166:in `call'
+  activesupport (4.1.0.beta1) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.0.beta1) lib/active_support/callbacks.rb:229:in `call'
+  activesupport (4.1.0.beta1) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.0.beta1) lib/active_support/callbacks.rb:229:in `call'
+  activesupport (4.1.0.beta1) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.0.beta1) lib/active_support/callbacks.rb:166:in `call'
+  activesupport (4.1.0.beta1) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.0.beta1) lib/active_support/callbacks.rb:166:in `call'
+  activesupport (4.1.0.beta1) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.0.beta1) lib/active_support/callbacks.rb:166:in `call'
+  activesupport (4.1.0.beta1) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.0.beta1) lib/active_support/callbacks.rb:86:in `call'
+  activesupport (4.1.0.beta1) lib/active_support/callbacks.rb:86:in `run_callbacks'
+  actionpack (4.1.0.beta1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.1.0.beta1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.1.0.beta1) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.1.0.beta1) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.1.0.beta1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.1.0.beta1) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.1.0.beta1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.1.0.beta1) lib/action_controller/metal/params_wrapper.rb:245:in `process_action'
+  activerecord (4.1.0.beta1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.1.0.beta1) lib/abstract_controller/base.rb:136:in `process'
+  actionview (4.1.0.beta1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.1.0.beta1) lib/action_controller/metal.rb:195:in `dispatch'
+  actionpack (4.1.0.beta1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.1.0.beta1) lib/action_controller/metal.rb:231:in `block in action'
+  actionpack (4.1.0.beta1) lib/action_dispatch/routing/route_set.rb:80:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/routing/route_set.rb:80:in `dispatch'
+  actionpack (4.1.0.beta1) lib/action_dispatch/routing/route_set.rb:48:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/journey/router.rb:71:in `block in call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/journey/router.rb:59:in `each'
+  actionpack (4.1.0.beta1) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/routing/route_set.rb:682:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/middleware/flash.rb:241:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/middleware/cookies.rb:486:in `call'
+  activerecord (4.1.0.beta1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.1.0.beta1) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  activerecord (4.1.0.beta1) lib/active_record/migration.rb:380:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.0.beta1) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.0.beta1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/middleware/reloader.rb:64:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.0.beta1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.0.beta1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.0.beta1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.0.beta1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.0.beta1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.0.beta1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.0.beta1) lib/active_support/cache/strategy/local_cache.rb:86:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.0.beta1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.0.beta1) lib/rails/engine.rb:516:in `call'
+  railties (4.1.0.beta1) lib/rails/application.rb:142:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/mike/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/mike/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/mike/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/mike/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.1.0.beta1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /Users/mike/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.1.0.beta1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/mike/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.1.0.beta1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (12.3ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateGames (20140124051308)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (26.2ms)[0m  DROP TABLE "games"
+  [1m[36mSQL (0.5ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20140124051308'[0m
+  [1m[35m (6.9ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateOrganizations (20140124051201)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.1ms)[0m  DROP TABLE "organizations"
+  [1m[36mSQL (0.4ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20140124051201'[0m
+  [1m[35m (7.4ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateOrganizations (20140124051201)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (10.4ms)[0m  [1mCREATE TABLE "organizations" ("id" serial primary key, "name" character varying(255), "slug" character varying(255), "location" character varying(255), "timezone" character varying(255), "description" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140124051201"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+Migrating to CreateGames (20140124051308)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (3.9ms)[0m  [1mCREATE TABLE "games" ("id" serial primary key, "name" character varying(255), "slug" character varying(255), "organization_id" integer, "timezone" character varying(255), "registration_start" timestamp, "registration_end" timestamp, "game_start" timestamp, "game_end" timestamp, "description" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (0.8ms)[0m  CREATE  INDEX  "index_games_on_organization_id" ON "games"  ("organization_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140124051308"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/admin/organizations/new" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+Processing by Admin::OrganizationsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered /Users/mike/.rvm/gems/ruby-2.0.0-p247/bundler/gems/active_admin-246814b47ffc/app/views/active_admin/resource/new.html.arb (44.4ms)
+Completed 200 OK in 114ms (Views: 47.8ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/active_admin/print.css?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/jquery.ui.datepicker.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/jquery.ui.button.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/jquery.ui.draggable.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/jquery.ui.resizable.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/jquery.ui.dialog.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/jquery.ui.sortable.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/active_admin/base.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/active_admin/lib/batch_actions.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/active_admin/lib/dropdown-menu.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/active_admin/lib/checkbox-toggler.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/active_admin/lib/modal_dialog.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/active_admin/lib/has_many.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/active_admin/lib/table-checkbox-toggler.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/active_admin/lib/popover.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/active_admin/ext/jquery-ui.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/active_admin/ext/jquery.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/active_admin.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/assets/active_admin/application.js?body=1" for 127.0.0.1 at 2014-01-23 21:19:47 -0800
+
+
+Started GET "/admin/comments" for 127.0.0.1 at 2014-01-23 21:20:24 -0800
+Processing by Admin::CommentsController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1
+DEPRECATION WARNING: ActiveRecord::Migrator.proper_table_name is deprecated and will be removed in Rails 4.2. Use the proper_table_name instance method on ActiveRecord::Migration instead. (called from table_name at /Users/mike/.rvm/gems/ruby-2.0.0-p247/bundler/gems/active_admin-246814b47ffc/lib/active_admin/orm/active_record/comments/comment.rb:37)
+  [1m[36m (9.4ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments"  WHERE "active_admin_comments"."namespace" = 'admin'[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "active_admin_comments"  WHERE "active_admin_comments"."namespace" = 'admin' LIMIT 30 OFFSET 0) subquery_for_count
+  [1m[36m (0.6ms)[0m  [1mSELECT DISTINCT "active_admin_comments"."resource_type" FROM "active_admin_comments"   ORDER BY resource_type asc[0m
+  [1m[35m (0.2ms)[0m  SELECT DISTINCT "active_admin_comments"."author_type" FROM "active_admin_comments"   ORDER BY author_type asc
+  Rendered /Users/mike/.rvm/gems/ruby-2.0.0-p247/bundler/gems/active_admin-246814b47ffc/app/views/active_admin/resource/index.html.arb (99.5ms)
+Completed 200 OK in 107ms (Views: 91.6ms | ActiveRecord: 12.0ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2014-01-23 21:20:24 -0800
+
+
+Started GET "/assets/active_admin/print.css?body=1" for 127.0.0.1 at 2014-01-23 21:20:24 -0800
+
+
+Started GET "/assets/jquery.ui.datepicker.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/jquery.ui.button.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/jquery.ui.draggable.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/jquery.ui.resizable.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/jquery.ui.dialog.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/jquery.ui.sortable.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/active_admin/base.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/active_admin/lib/batch_actions.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/active_admin/lib/dropdown-menu.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/active_admin/lib/checkbox-toggler.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/active_admin/lib/has_many.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/active_admin/lib/modal_dialog.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/active_admin/lib/table-checkbox-toggler.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/active_admin/lib/popover.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/active_admin/ext/jquery-ui.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/active_admin/ext/jquery.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/active_admin/application.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/assets/active_admin.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:25 -0800
+
+
+Started GET "/admin/comments?scope=all" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+Processing by Admin::CommentsController#index as HTML
+  Parameters: {"scope"=>"all"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "active_admin_comments"  WHERE "active_admin_comments"."namespace" = 'admin'
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "active_admin_comments"  LIMIT 30 OFFSET 0) subquery_for_count[0m
+  [1m[35m (0.3ms)[0m  SELECT DISTINCT "active_admin_comments"."resource_type" FROM "active_admin_comments"   ORDER BY resource_type asc
+  [1m[36m (0.2ms)[0m  [1mSELECT DISTINCT "active_admin_comments"."author_type" FROM "active_admin_comments"   ORDER BY author_type asc[0m
+  Rendered /Users/mike/.rvm/gems/ruby-2.0.0-p247/bundler/gems/active_admin-246814b47ffc/app/views/active_admin/resource/index.html.arb (44.3ms)
+Completed 200 OK in 49ms (Views: 45.6ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/active_admin/print.css?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/jquery.ui.datepicker.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/jquery.ui.button.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/jquery.ui.draggable.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/jquery.ui.resizable.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/jquery.ui.dialog.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/jquery.ui.sortable.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/active_admin/lib/batch_actions.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/active_admin/base.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/active_admin/lib/checkbox-toggler.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/active_admin/lib/dropdown-menu.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/active_admin/lib/has_many.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/active_admin/lib/modal_dialog.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/active_admin/lib/popover.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/active_admin/lib/table-checkbox-toggler.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/active_admin/ext/jquery-ui.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/active_admin/ext/jquery.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/active_admin/application.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/assets/active_admin.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:36 -0800
+
+
+Started GET "/admin/comments?scope=admin" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+Processing by Admin::CommentsController#index as HTML
+  Parameters: {"scope"=>"admin"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments"  WHERE "active_admin_comments"."namespace" = 'admin'[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "active_admin_comments"  WHERE "active_admin_comments"."namespace" = 'admin' LIMIT 30 OFFSET 0) subquery_for_count
+  [1m[36m (0.5ms)[0m  [1mSELECT DISTINCT "active_admin_comments"."resource_type" FROM "active_admin_comments"   ORDER BY resource_type asc[0m
+  [1m[35m (0.3ms)[0m  SELECT DISTINCT "active_admin_comments"."author_type" FROM "active_admin_comments"   ORDER BY author_type asc
+  Rendered /Users/mike/.rvm/gems/ruby-2.0.0-p247/bundler/gems/active_admin-246814b47ffc/app/views/active_admin/resource/index.html.arb (41.8ms)
+Completed 200 OK in 47ms (Views: 42.9ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/active_admin/print.css?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/jquery.ui.datepicker.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/jquery.ui.button.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/jquery.ui.draggable.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/jquery.ui.resizable.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/jquery.ui.dialog.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/jquery.ui.sortable.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/active_admin/base.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/active_admin/lib/batch_actions.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/active_admin/lib/checkbox-toggler.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/active_admin/lib/dropdown-menu.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/active_admin/lib/has_many.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/active_admin/lib/modal_dialog.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/active_admin/lib/popover.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/active_admin/lib/table-checkbox-toggler.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/active_admin/ext/jquery-ui.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/active_admin/ext/jquery.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/active_admin/application.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
+
+
+Started GET "/assets/active_admin.js?body=1" for 127.0.0.1 at 2014-01-23 21:20:37 -0800
