@@ -27,11 +27,14 @@ namespace :db do
       organization.description = Faker::Lorem.paragraph
       organization.created_at = 4.months.ago..3.months.ago
       organization.updated_at = organization.created_at..Time.now
+    end
 
-      Game.populate 1..2 do |game|
+    organizations = Organization.all.sample(Random.new.rand 3..7)
+    (Random.new.rand 1..4).times do
+      Game.populate organizations.count do |game|
         game.name = Faker::Company.catch_phrase
         game.slug = Faker::Internet.slug
-        game.organization_id = organization.id
+        game.organization_id = organizations.last.id
         game.timezone = Faker::Address.time_zone
         game.registration_start = 1.weeks.ago..Time.now
         game.registration_end = Time.now..(Time.now + 1.week)
@@ -49,6 +52,7 @@ namespace :db do
           player.updated_at = player.created_at..Time.now
         end
       end
+      organizations.pop
     end
   end
 end
