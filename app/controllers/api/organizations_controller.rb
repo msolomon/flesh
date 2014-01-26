@@ -13,8 +13,8 @@ private
   def inflate
     lambda { |organization|
       response = organization.attributes
-      response[:games] = organization.games.collect(&:id)
-      response[:users] = organization.users.collect(&:id)
+      response[:game_ids] = organization.games.collect(&:id)
+      response[:user_ids] = organization.users.collect(&:id)
       response
     }
   end
