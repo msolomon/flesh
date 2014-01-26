@@ -5,5 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :organization
-  has_many :game, through: :player
+  has_many :players
+  has_many :games, through: :players
 end

@@ -1,5 +1,5 @@
 class Game < ActiveRecord::Base
   belongs_to :organization
-  has_many :player
-  has_many :user, through: :player
+  has_many :players
+  has_many :users, through: :players
 end
