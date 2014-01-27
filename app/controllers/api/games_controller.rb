@@ -1,4 +1,4 @@
-class Api::GamesController < InheritedResources::Base
+class Api::GamesController < ApplicationController
   def index
     @games = ids_or_all(Game.includes :players)
     respond_with(@games.map &inflate)
@@ -17,4 +17,5 @@ private
       response
     }
   end
+  
 end
