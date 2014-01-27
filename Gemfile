@@ -43,12 +43,17 @@ gem 'polyamorous', github: 'activerecord-hackery/polyamorous'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Use debugger
-gem 'debugger', group: [:development, :test]
+group :development, :test do
+  gem 'rspec-rails', '2.14.0'
+  gem 'watchr'
+  gem 'debugger'
+  gem 'spork-rails'
+  gem 'minitest'
+end
 
-
-
-gem 'rabl'
+group :test do
+  gem 'factory_girl_rails', '4.2.0'
+end
 
 # For Static Assets and Logging
 gem 'rails_12factor', group: :production
@@ -59,9 +64,7 @@ gem 'devise', '~> 3.2'
 
 gem 'activeadmin', github: 'gregbell/active_admin'
 
-gem 'rspec-rails', '2.14.0', group: [:development, :test]
 
-gem 'factory_girl_rails', '4.2.0', group: [:test]
 
 gem "formtastic", github: "justinfrench/formtastic"
 
@@ -72,3 +75,5 @@ gem 'faker'
 gem 'populator'
 
 gem 'oj'
+
+gem 'httparty'
