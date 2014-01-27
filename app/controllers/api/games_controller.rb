@@ -1,12 +1,12 @@
 class Api::GamesController < InheritedResources::Base
   def index
-    @games = ids_or_all(Game.includes :players).map &inflate
-    respond_with(@games)
+    @games = ids_or_all(Game.includes :players)
+    respond_with(@games.map &inflate)
   end
 
   def show
-    @game = inflate.call Game.includes(:players).find params[:id]
-    respond_with(@game)
+    @game = Game.includes(:players).find params[:id]
+    respond_with(inflate.call @game)
   end
 
 private

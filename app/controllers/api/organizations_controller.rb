@@ -1,12 +1,12 @@
 class Api::OrganizationsController < ApplicationController
   def index
-    @organizations = ids_or_all(Organization.includes :games, :users).map &inflate
-    respond_with(@organizations)
+    @organizations = ids_or_all(Organization.includes :games, :users)
+    respond_with(@organizations.map &inflate)
   end
 
   def show
-    @organization = inflate.call Organization.includes(:games, :users).find params[:id]
-    respond_with(@organization)
+    @organization = Organization.includes(:games, :users).find params[:id]
+    respond_with(inflate.call @organization)
   end
 
 private
