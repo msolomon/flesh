@@ -1,4 +1,7 @@
 class Api::OrganizationsController < ApplicationController
+  
+  respond_to :json
+  
   def index
     @organizations = ids_or_all(Organization.includes :games, :users)
     respond_with(@organizations.map &inflate)

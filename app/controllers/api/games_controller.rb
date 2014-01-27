@@ -1,4 +1,7 @@
 class Api::GamesController < ApplicationController
+  
+  respond_to :json
+  
   def index
     @games = ids_or_all(Game.includes :players)
     respond_with(@games.map &inflate)

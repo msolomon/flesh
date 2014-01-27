@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   namespace :api do
     resources :players
 
@@ -6,10 +7,11 @@ Rails.application.routes.draw do
 
     resources :organizations
 
-    resources :users
+    # resources :users
 
-    devise_for :users, ActiveAdmin::Devise.config
   end
+
+  devise_for :users, ActiveAdmin::Devise.config
 
   ActiveAdmin.routes(self)
   # The priority is based upon order of creation: first created -> highest priority.
@@ -17,7 +19,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root "welcome#index"
+  root "admin/dashboard#index"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

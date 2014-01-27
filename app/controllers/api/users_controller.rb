@@ -1,5 +1,7 @@
 class Api::UsersController < ApplicationController
 
+  respond_to :json
+  
   def index
     @users = ids_or_all(User)
     respond_with(@users.map &inflate)
