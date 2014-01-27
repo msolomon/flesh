@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
     resources :organizations
 
+    resources :users
+
     devise_for :users, ActiveAdmin::Devise.config
   end
 
