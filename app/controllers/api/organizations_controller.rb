@@ -1,25 +1,13 @@
 class Api::OrganizationsController < ApplicationController
-  
+
   respond_to :json
   
   def index
-    @organizations = ids_or_all(Organization.includes :games, :users)
-    respond_with(@organizations.map &inflate)
+    respond_with(ids_or_all(Organization.includes :games, :users))
   end
 
   def show
-    @organization = Organization.includes(:games, :users).find params[:id]
-    respond_with(inflate.call @organization)
+    respond_with(Organization.includes(:games, :users).find params[:id])
   end
 
-private
-  def inflate
-    lambda { |organization|
-      response = organization.attributes
-      response[:game_ids] = organization.game_ids
-      response[:user_ids] = organization.user_ids
-      response
-    }
-  end
-  
 end

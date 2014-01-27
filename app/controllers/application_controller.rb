@@ -6,4 +6,11 @@ class ApplicationController < ActionController::Base
   def ids_or_all models
     params[:ids] ? models.find(params[:ids]) : models
   end
+
+  def default_serializer_options
+    {
+      root: false
+    }
+  end
+
 end
