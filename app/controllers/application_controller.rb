@@ -4,4 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
   respond_to :json, :xml
+
+  def ids_or_all models
+    params[:ids] ? models.find(params[:ids]) : models
+  end
 end

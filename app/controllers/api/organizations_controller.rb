@@ -1,6 +1,6 @@
 class Api::OrganizationsController < ApplicationController
   def index
-    @organizations = Organization.includes(:games, :users).map &inflate
+    @organizations = ids_or_all(Organization.includes :games, :users).map &inflate
     respond_with(@organizations)
   end
 
@@ -13,8 +13,8 @@ private
   def inflate
     lambda { |organization|
       response = organization.attributes
-      response[:game_ids] = organization.games.collect(&:id)
-      response[:user_ids] = organization.users.collect(&:id)
+      response[:game_ids] = organization.game_ids
+      response[:user_ids] = organization.user_ids
       response
     }
   end
