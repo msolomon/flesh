@@ -11,12 +11,12 @@ class Api::UsersController < ApplicationController
   end
 
   def create
-    @user = Create.new(params[:create].permit :email, :first_name, :last_name, :phone)
+    @user = User.new(params.require(:user).permit(:email, :password, :first_name, :last_name, :phone))
 
     if @user.save
-      respond_with(@user)
+      respond_with(:api, @user, status: :created)
     else
-      respond_with({errors: @user.errors})
+      render json: {errors: @user.errors, status: 422}
     end
 
   end
@@ -24,10 +24,10 @@ class Api::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    if @user.update(params[:user].permit(:email, :first_name, :last_name, :phone))
+    if @user.update(params[:user].permit(:email, :password, :first_name, :last_name, :phone))
       respond_with(@user)
     else
-      respond_with({errors: @user.errors})
+      render json: {errors: @user.errors, status: 422}
     end
   end
 

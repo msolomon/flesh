@@ -7,4 +7,9 @@ class User < ActiveRecord::Base
   has_many :players
   has_many :games, through: :players
   has_many :organizations, through: :games
+
+  validates :first_name, presence: true 
+  validates :last_name, presence: true 
+  # other fields validated by devise
+
 end
