@@ -13,7 +13,7 @@ private
   def inflate
     lambda { |game|
       response = game.attributes
-      response[:player_ids] = game.players.collect(&:id)
+      response[:player_ids] = game.player_ids
       response
     }
   end
