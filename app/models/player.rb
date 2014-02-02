@@ -4,11 +4,16 @@ require 'SecureRandom'
 class Player < ActiveRecord::Base
   before_validation :add_human_code
 
+  enum oz_status: [:uninterested, :interested, :unconfirmed, :confirmed]
+
   belongs_to :user
   belongs_to :game
 
-  enum oz_status: [:uninterested, :interested, :unconfirmed, :confirmed]
+  has_many :tags, foreign_key: 'tagger_id'
+  has_many :taggees, class_name: 'Player', through: :tags
 
+  has_one :tagged_tag, class_name: 'Tag', foreign_key: 'taggee_id'
+  has_one :tagger, class_name: 'Player', through: :tagged_tag, foreign_key: 'tagger_id'
 
 private
   def add_human_code
