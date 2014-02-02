@@ -140,6 +140,7 @@ GEM
     minitest (5.2.2)
     multi_json (1.8.4)
     multi_xml (0.5.5)
+    obscenity (1.0.2)
     oj (2.5.4)
     orm_adapter (0.5.0)
     pg (0.17.1)
@@ -240,6 +241,7 @@ DEPENDENCIES
   httparty
   jquery-rails
   minitest
+  obscenity
   oj
   pg
   polyamorous!

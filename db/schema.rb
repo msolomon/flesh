@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140124052456) do
+ActiveRecord::Schema.define(version: 20140202015553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20140124052456) do
     t.datetime "updated_at"
   end
 
+  add_index "games", ["organization_id", "slug"], name: "index_games_on_organization_id_and_slug", unique: true, using: :btree
   add_index "games", ["organization_id"], name: "index_games_on_organization_id", using: :btree
 
   create_table "organizations", force: true do |t|
@@ -57,14 +58,20 @@ ActiveRecord::Schema.define(version: 20140124052456) do
     t.datetime "updated_at"
   end
 
+  add_index "organizations", ["name"], name: "index_organizations_on_name", unique: true, using: :btree
+  add_index "organizations", ["slug"], name: "index_organizations_on_slug", unique: true, using: :btree
+
   create_table "players", force: true do |t|
     t.integer  "user_id"
     t.integer  "game_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "human_code"
   end
 
+  add_index "players", ["game_id", "human_code"], name: "index_players_on_game_id_and_human_code", unique: true, using: :btree
   add_index "players", ["game_id"], name: "index_players_on_game_id", using: :btree
+  add_index "players", ["user_id", "game_id"], name: "index_players_on_user_id_and_game_id", unique: true, using: :btree
   add_index "players", ["user_id"], name: "index_players_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
@@ -86,6 +93,7 @@ ActiveRecord::Schema.define(version: 20140124052456) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["phone"], name: "index_users_on_phone", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
