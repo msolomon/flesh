@@ -7,6 +7,9 @@ class Player < ActiveRecord::Base
   belongs_to :user
   belongs_to :game
 
+  enum oz_status: [:uninterested, :interested, :unconfirmed, :confirmed]
+
+
 private
   def add_human_code
     loop do
@@ -18,5 +21,5 @@ private
   def generate_random_human_code
     'abcdefghjkmnpqrstuvwxyz23456789'.split('').shuffle(random: SecureRandom.random_number)[0,5].join
   end
-  
+
 end
