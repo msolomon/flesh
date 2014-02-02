@@ -17,6 +17,7 @@ namespace :db do
       user.first_name = Faker::Name.first_name
       user.last_name = Faker::Name.last_name
       user.phone = Faker::PhoneNumber.phone_number
+      user.screen_name = Faker::Internet.user_name
     end
 
     Organization.populate 3 do |organization|
