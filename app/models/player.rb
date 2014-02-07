@@ -22,7 +22,7 @@ private
   def add_human_code
     loop do
       self.human_code = generate_random_human_code
-      break if !Obscenity.profane? self.human_code
+      break if !Obscenity.profane? self.human_code and !Player.where(human_code: self.human_code).exists?
     end
   end
 
