@@ -15,6 +15,9 @@ class Player < ActiveRecord::Base
   has_one :tagged_tag, class_name: 'Tag', foreign_key: 'taggee_id'
   has_one :tagger, class_name: 'Player', through: :tagged_tag, foreign_key: 'tagger_id'
 
+  has_many :event_links, through: :taggable
+  has_many :events, through: :event_links
+
 private
   def add_human_code
     loop do
