@@ -81,3 +81,5 @@ gem 'httparty'
 gem 'active_model_serializers', '~> 0.8.0'
 
 gem 'obscenity'
+
+gem 'cancan'
