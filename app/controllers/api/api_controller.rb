@@ -1,3 +1,5 @@
+require "base64"
+
 class Api::ApiController < ApplicationController
   protect_from_forgery with: :null_session
   respond_to :json
@@ -5,10 +7,11 @@ class Api::ApiController < ApplicationController
   before_filter :authenticate_user_from_token_soft
 
   def authenticate_user_from_token_soft
-    user_id = params[:user_id].presence
+    auth_data = auth_params
+    user_id = auth_data[:user_id]
     user = user_id && User.find_by_id(user_id)
 
-    if user && Devise.secure_compare(user.authentication_token, auth_params[:authentication_token])
+    if user && Devise.secure_compare(user.authentication_token, auth_data[:authentication_token])
       sign_in(:user, user, store: false)
     else
       false
@@ -24,6 +27,21 @@ class Api::ApiController < ApplicationController
 
   private
   def auth_params
-    params.require(:user).permit(:authentication_token)
+    params = {user_id: nil, authentication_token: nil}
+
+    auth_field = request.headers['Authorization']
+    if auth_field
+      auth_field = auth_field[6..-1]
+    end
+
+    if auth_field
+      fields = Base64.decode64(auth_field).split(':')
+      if fields.length == 2
+        params = {user_id: fields[0], authentication_token: fields[1]}
+      end
+    end
+
+    params
   end
+
 end
