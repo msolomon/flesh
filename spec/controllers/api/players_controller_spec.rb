@@ -23,7 +23,15 @@ describe Api::PlayersController do
   # This should return the minimal set of attributes required to create a valid
   # Player. As you add validations to Player, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "user" => "" } }
+  let(:valid_attributes) {{
+    user: {
+      screen_name: "bill.the.kid",
+      email: "billy@thekid.com",
+      first_name: "Billy",
+      last_name: "Kidd",
+      password: "SUPERgreatPASSWORD",
+    }
+  }}
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -42,21 +50,6 @@ describe Api::PlayersController do
     it "assigns the requested player as @player" do
       player = Player.create! valid_attributes
       get :show, {:id => player.to_param}, valid_session
-      assigns(:player).should eq(player)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new player as @player" do
-      get :new, {}, valid_session
-      assigns(:player).should be_a_new(Player)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested player as @player" do
-      player = Player.create! valid_attributes
-      get :edit, {:id => player.to_param}, valid_session
       assigns(:player).should eq(player)
     end
   end
