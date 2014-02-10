@@ -1,6 +1,4 @@
-class Api::UsersController < ApplicationController
-
-  respond_to :json
+class Api::UsersController < Api::ApiController
 
   def index
     respond_with(ids_or_all(User.all))

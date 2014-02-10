@@ -1,10 +1,8 @@
-class Api::PlayersController < ApplicationController
-
-  respond_to :json
+class Api::PlayersController < Api::ApiController
 
   def index
     if !params[:ids] then
-      return respond_with({error: 'Player requests must specify player ids'}, status: :bad_request)
+      return respond_with(string_to_error_document('Player requests must specify player ids'))
     end
 
     respond_with(Player.includes(:user).find params[:ids])

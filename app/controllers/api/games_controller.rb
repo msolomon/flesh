@@ -1,6 +1,4 @@
-class Api::GamesController < ApplicationController
-
-  respond_to :json
+class Api::GamesController < Api::ApiController
   
   def index
     respond_with(ids_or_all Game.includes(:players))
