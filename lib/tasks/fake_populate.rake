@@ -18,6 +18,8 @@ namespace :db do
       user.last_name = Faker::Name.last_name
       user.phone = Faker::PhoneNumber.phone_number
       user.screen_name = Faker::Internet.user_name
+      user.admin = true
+      user.authentication_token = 'my_auth_token'
     end
 
     Organization.populate 3 do |organization|
@@ -49,6 +51,7 @@ namespace :db do
         Player.populate users.count do |player|
           player.user_id = users.pop.id
           player.game_id = game.id
+          player.oz_status = 0
           player.created_at = game.created_at..Time.now
           player.updated_at = player.created_at..Time.now
         end
