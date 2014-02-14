@@ -1,15 +1,12 @@
 Rails.application.routes.draw do
 
-  resources :tags
-
   namespace :api do
+
     resources :players
-
     resources :games
-
     resources :organizations
-
     resources :users
+    resources :tags
 
   end
 

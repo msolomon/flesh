@@ -2,7 +2,7 @@ require 'obscenity'
 require 'SecureRandom'
 
 class Player < ActiveRecord::Base
-  before_validation :add_human_code
+  before_validation :ensure_human_code
 
   enum oz_status: [:uninterested, :interested, :unconfirmed, :confirmed]
 
@@ -18,6 +18,16 @@ class Player < ActiveRecord::Base
   has_many :event_links, through: :taggable
   has_many :events, through: :event_links
 
+  def canTag?
+    # TODO: implement
+    return false
+  end
+
+  def canBeTagged?
+    # TODO: implement
+    return false
+  end
+
 private
   def add_human_code
     loop do
@@ -28,6 +38,12 @@ private
 
   def generate_random_human_code
     'abcdefghjkmnpqrstuvwxyz23456789'.split('').shuffle(random: SecureRandom.random_number)[0,5].join
+  end
+
+  def ensure_human_code
+    if human_code.blank?
+      add_human_code
+    end
   end
 
 end
