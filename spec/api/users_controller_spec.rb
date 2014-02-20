@@ -6,7 +6,7 @@ describe "User API" do
     user_params = FactoryGirl.attributes_for(:user)
     User.create! user_params
 
-    post api_users_path, user: user_params
+    post api_users_path, user: user_params, format: :json
 
     expect(response.response_code).to eq(422)
   end
@@ -15,18 +15,18 @@ describe "User API" do
     user_params = FactoryGirl.attributes_for(:user)
     
     user_params.delete(:first_name)
-    
-    expect {post api_users_path, user: user_params}.to raise_error(ActionController::ParameterMissing)
+
+    expect {post api_users_path, user: user_params, format: :json}.to raise_error(ActionController::ParameterMissing)
   end
 
   it "can't signup with the same email using a different case" do
     user_params = FactoryGirl.attributes_for(:user)
     user_params[:email].downcase!
-    post api_users_path, user: user_params
+    post api_users_path, user: user_params, format: :json
     expect(response.response_code).to eq(201)
 
     user_params[:email].upcase!
-    post api_users_path, user: user_params
+    post api_users_path, user: user_params, format: :json
     expect(response.response_code).to eq(422)
   end
 
@@ -34,7 +34,7 @@ describe "User API" do
     user_params = FactoryGirl.attributes_for(:user)
 
     puts "@@#{api_users_path}"
-    post api_users_path user: user_params
+    post api_users_path user: user_params, format: :json
 
     expect(response.response_code).to eq(201)
 
@@ -50,7 +50,7 @@ describe "User API" do
     user_params = FactoryGirl.attributes_for(:user)
     user = User.create(user_params)
 
-    post api_users_login_path, user: user_params
+    post api_users_login_path, user: user_params, format: :json
 
     expect(get_json['user'].presence).not_to eq(nil)
     expect(get_json['user'].keys.map{|key| key.to_sym}).to include(:email, :first_name, :last_name, :email, :id, :authentication_token)
@@ -63,7 +63,7 @@ describe "User API" do
   #   user_params = FactoryGirl.attributes_for(:user)
   #   user = User.create(user_params)
 
-  #   post reset_password_api_users_path, user: user_params
+  #   post reset_password_api_users_path, user: user_params, format: :json
 
   #   expect(get_json['message'].presence).not_to eq(nil)
   # end
@@ -100,7 +100,7 @@ describe "User API" do
     user_params = FactoryGirl.attributes_for(:user)
     user_params[:email] = email
 
-    post api_users_login_path, user: user_params
+    post api_users_login_path, user: user_params, format: :json
 
     expect(response.response_code).to eq(200)
   end
