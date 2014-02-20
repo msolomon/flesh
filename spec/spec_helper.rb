@@ -49,7 +49,7 @@ RSpec.configure do |config|
   config.include Requests::JsonHelpers, type: :request
 
   config.include Devise::TestHelpers, :type => :controller
-  config.extend ControllerMacros, :type => :controller
+  config.include ControllerMacros
 
   config.before(:suite) do
     WebMock.disable_net_connect!

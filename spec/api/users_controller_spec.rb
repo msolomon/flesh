@@ -33,7 +33,6 @@ describe "User API" do
   it 'gets complete user object on signup' do
     user_params = FactoryGirl.attributes_for(:user)
 
-    puts "@@#{api_users_path}"
     post api_users_path user: user_params, format: :json
 
     expect(response.response_code).to eq(201)
@@ -91,6 +90,8 @@ describe "User API" do
   end
 
   it 'can login with a capitalized email' do
+    headers = get_auth_header(nil, nil)
+
     email = "TEST@example.com"
 
     user = FactoryGirl.build(:user)
@@ -100,7 +101,7 @@ describe "User API" do
     user_params = FactoryGirl.attributes_for(:user)
     user_params[:email] = email
 
-    post api_users_login_path, user: user_params, format: :json
+    post api_users_login_path, headers, user: user_params, format: :json
 
     expect(response.response_code).to eq(200)
   end

@@ -7,6 +7,7 @@ FactoryGirl.define do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     screen_name { Faker::Internet.user_name }
+    authentication_token "testtoken"
   end
 
   factory :second_user do
