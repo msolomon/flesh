@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include ModelMixin
 
   before_save :ensure_authentication_token
 

@@ -1,0 +1,1 @@
+require('mixins/model_module')

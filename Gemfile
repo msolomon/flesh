@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-# ruby '2.1.0'
+ruby '2.1.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.0.beta1'
+gem 'rails', '4.1.0.rc1'
 
 # Use sqlite3 as the database for Active Record
 gem 'pg'
@@ -49,6 +49,8 @@ group :development, :test do
   gem 'watchr'
   gem 'debugger'
   gem 'minitest'
+  gem 'webmock'
+  gem 'database_cleaner'
 end
 
 # For Static Assets and Logging

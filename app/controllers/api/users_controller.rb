@@ -9,12 +9,12 @@ class Api::UsersController < Api::ApiController
   end
 
   def create
-    @user = User.new(params.require(:user).permit(:email, :password, :first_name, :last_name, :phone))
+    @user = User.new(signup_params)
 
     if @user.save
       respond_with(:api, @user, status: :created)
     else
-      render json: {errors: @user.errors, status: 422}
+      render json: @user.to_error_document, status: 422
     end
 
   end
@@ -22,11 +22,22 @@ class Api::UsersController < Api::ApiController
   def update
     @user = User.find(params[:id])
 
-    if @user.update(params[:user].permit(:email, :password, :first_name, :last_name, :phone))
+    if @user.update(params[:user].permit(signup_params))
       respond_with(@user)
     else
-      render json: {errors: @user.errors, status: 422}
+      render json: @user.to_error_document, status: 422
     end
+  end
+
+private
+  def signup_params
+    user_params = params.require(:user)
+    user_params.require(:email)
+    user_params.require(:password)
+    user_params.require(:first_name)
+    user_params.require(:last_name)
+    user_params.require(:screen_name)
+    user_params.permit(:email, :password, :first_name, :last_name, :screen_name, :phone)
   end
 
 end

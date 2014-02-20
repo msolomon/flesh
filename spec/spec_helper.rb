@@ -5,6 +5,8 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'factory_girl'
+require 'webmock/rspec'
+require 'database_cleaner'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -42,8 +44,30 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
+  config.include Rails.application.routes.url_helpers
+
+  config.include Requests::JsonHelpers, type: :request
 
   config.include Devise::TestHelpers, :type => :controller
   config.extend ControllerMacros, :type => :controller
+
+  config.before(:suite) do
+    WebMock.disable_net_connect!
+
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.after(:suite) do
+    WebMock.allow_net_connect!
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 
 end
