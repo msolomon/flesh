@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-# ruby '2.1.0'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0.rc1'
 
@@ -26,12 +24,6 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc',          group: :doc, require: false
-
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
-gem 'spring',        group: :development
-
 gem 'polyamorous', github: 'activerecord-hackery/polyamorous'
 
 # Use ActiveModel has_secure_password
@@ -52,6 +44,12 @@ group :development, :test do
   gem 'webmock'
   gem 'database_cleaner'
 end
+
+group :development do
+  gem 'spring'
+end
+
+gem 'thin'
 
 # For Static Assets and Logging
 gem 'rails_12factor', group: :production
