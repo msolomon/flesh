@@ -46,7 +46,7 @@ RSpec.configure do |config|
 
   config.include Rails.application.routes.url_helpers
 
-  config.include Requests::JsonHelpers, type: :request
+  config.include Requests::JsonHelpers
 
   config.include Devise::TestHelpers, :type => :controller
   config.include ControllerMacros

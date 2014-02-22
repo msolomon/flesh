@@ -11,8 +11,6 @@ class Api::ApiController < ApplicationController
     user_id = auth_data[:user_id]
     user = user_id && User.find_by_id(user_id)
 
-    puts auth_data
-
     if user && Devise.secure_compare(user.authentication_token, auth_data[:authentication_token])
       sign_in(:user, user, store: false)
     else
