@@ -20,6 +20,7 @@ describe "User API" do
     post api_users_path, user: user_params, format: :json
 
     expect(response.response_code).to eq(422)
+    expect(get_json.keys.map{|key| key.to_sym}).to include(:error, :errors)
   end
 
   it 'cant signup without first name' do
@@ -27,8 +28,16 @@ describe "User API" do
 
     incomplete_user_params.delete(:first_name)
 
+    expect{post api_users_path, user: incomplete_user_params, format: :json}.to raise_error(ActionController::ParameterMissing)
+  end
+
+  it 'can signup with empty phone' do
+    incomplete_user_params = user_params
+
+    incomplete_user_params[:phone] = ""
+
     post api_users_path, user: incomplete_user_params, format: :json
-    expect(response.response_code).to eq(400)
+    expect(response.response_code).to eq(201)
   end
 
   it "can't signup with the same email using a different case" do
