@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
 
-  namespace :api do
+  namespace :api, defaults: {format: :json} do
 
     resources :players
     resources :games
     resources :organizations
+    resource :user do
+      resource :login, only: :create, to: 'sessions#create'
+      resource :logout, only: :destroy, to: 'sessions#destroy'
+    end
     resources :users
     resources :tags
 

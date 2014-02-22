@@ -57,7 +57,7 @@ describe "User API" do
 
     expect(response.response_code).to eq(201)
 
-    user_json = get_json
+    user_json = get_json['user']
 
     expect(user_json.keys.map{|key| key.to_sym}).to include(:email, :first_name, :last_name, :email, :id, :email)
     expect(user_json['first_name']).to eq(user_params[:first_name])
@@ -65,18 +65,24 @@ describe "User API" do
     expect(user_json['email']).to ieq(user_params[:email])
   end
 
-  # it 'gets complete user object on login' do
-  #   user_params = FactoryGirl.attributes_for(:user)
-  #   user = User.create(user_params)
+  it 'gets complete user object on login' do
+    this_user = user
 
-  #   post api_users_login_path, user: user_params, format: :json
+    user_login_params = {
+      email: user_params[:email],
+      password: user_params[:password]
+    }
 
-  #   expect(get_json[:user].presence).not_to eq(nil)
-  #   expect(get_json[:user].keys.map{|key| key.to_sym}).to include(:email, :first_name, :last_name, :email, :id, :authentication_token, :email)
-  #   expect(user.first_name).to eq(user_params[:first_name])
-  #   expect(user.last_name).to eq(user_params[:last_name])
-  #   expect(user.email).to eq(user_params[:email])
-  # end
+    post api_user_login_path, user: user_login_params, format: :json
+
+    user_json = get_json['user']
+
+    expect(user_json).not_to eq(nil)
+    expect(user_json.keys.map{|key| key.to_sym}).to include(:email, :first_name, :last_name, :email, :id, :authentication_token, :email)
+    expect(user_json['first_name']).to eq(user_params[:first_name])
+    expect(user_json['last_name']).to eq(user_params[:last_name])
+    expect(user_json['email']).to ieq(user_params[:email])
+  end
 
   # it 'allows password reset with just email' do
   #   user_params = FactoryGirl.attributes_for(:user)

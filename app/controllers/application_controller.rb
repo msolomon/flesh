@@ -12,12 +12,6 @@ class ApplicationController < ActionController::Base
     params[:ids] ? models.find(params[:ids]) : models
   end
 
-  def default_serializer_options
-    {
-      root: false
-    }
-  end
-
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up).concat [:username, :last_name, :phone]
   end
