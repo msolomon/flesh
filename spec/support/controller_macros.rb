@@ -19,4 +19,28 @@ module ControllerMacros
     }
   end
 
+  def create_oz
+    FactoryGirl.create(:player, {oz_status: :confirmed, game: FactoryGirl.create(:game, {game_start: Time.now - 5.hours})})
+  end
+
+  def create_starved_oz
+    FactoryGirl.create(:player, {oz_status: :confirmed, game: FactoryGirl.create(:game, {game_start: Time.now - 2.days})})
+  end
+
+  def create_zombie
+    player = FactoryGirl.create(:player)
+    FactoryGirl.create(:tag, {taggee: player})
+    player
+  end
+
+  def create_starved_zombie
+    player = FactoryGirl.create(:player)
+    FactoryGirl.create(:tag, {taggee: player, claimed: 36.hours.ago})
+    player
+  end
+
+  def create_human
+    FactoryGirl.create(:player)
+  end
+
 end

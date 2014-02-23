@@ -9,4 +9,9 @@ class Game < ActiveRecord::Base
 
   validates :starve_time, numericality: { only_integer: true, greater_than: 0 }
   validates :oz_reveal, oz_reveal: true
+
+  def oz_revealed?
+    oz_reveal <= Time.now
+  end
+  
 end
