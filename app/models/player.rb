@@ -18,6 +18,7 @@ class Player < ActiveRecord::Base
   has_many :event_links, through: :taggable
   has_many :events, through: :event_links
 
+
   def canTag?
     # TODO: implement
     return false
@@ -26,6 +27,39 @@ class Player < ActiveRecord::Base
   def canBeTagged?
     # TODO: implement
     return false
+  end
+
+  def true_status
+    status = :human
+
+    if oz_status.to_sym == :confirmed then
+      status = :oz
+    elsif tagged_tag != nil then
+      status = :zombie
+    end
+
+    unless status == :human || (last_fed && last_fed > (Time.now - game.starve_time)) then
+      status = :starved
+    end
+
+    status
+  end
+
+  def last_fed
+    most_recent_feeding = tags.order(claimed: :desc).first
+
+    if most_recent_feeding == nil
+
+      if oz_status.to_sym == :confirmed then
+        most_recent_feeding = game.game_start
+      elsif tagged_tag then
+        most_recent_feeding = tagged_tag.claimed
+      end
+        
+    elsif most_recent_feeding
+      most_recent_feeding.claimed
+    end
+
   end
 
 private
