@@ -12,6 +12,7 @@ class Api::UsersController < Api::ApiController
     @user = User.new(signup_params)
 
     if @user.save
+      sign_in(:user, @user, store: false)
       respond_with(:api, @user, status: :created)
     else
       render json: @user.to_error_document, status: 422

@@ -63,6 +63,7 @@ describe "User API" do
   def expect_complete_user user_json
     expect(user_json).not_to eq(nil)
     expect(user_json.keys.map{|key| key.to_sym}).to include(:id,
+                                                            :screen_name,
                                                             :first_name,
                                                             :last_name,
                                                             :phone,
@@ -70,6 +71,7 @@ describe "User API" do
                                                             :authentication_token,
                                                             :created_at)
     expect(user_json['id']).not_to eq(nil)
+    expect(user_json['screen_name']).to eq(user_params[:screen_name])
     expect(user_json['first_name']).to eq(user_params[:first_name])
     expect(user_json['last_name']).to eq(user_params[:last_name])
     expect(user_json['email']).to ieq(user_params[:email])
@@ -125,6 +127,18 @@ describe "User API" do
     post api_user_login_path, user: user_login_params, format: :json
 
     expect_complete_user get_json['user']
+  end
+
+  it 'cannot read private fields of other users' do
+    create_user
+
+    get api_users_path(user_params[:id])
+
+    expect(response.response_code).to eq(200)
+    expect(get_json['id']).not_to eq(nil)
+    expect(get_json['email']).to eq(nil)
+    expect(get_json['phone']).to eq(nil)
+    expect(get_json['authentication_token']).to eq(nil)
   end
 
 end
