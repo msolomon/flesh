@@ -126,6 +126,8 @@ GEM
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hike (1.2.3)
+    hstore_accessor (0.5.3)
+      activesupport (>= 3.2.0)
     httparty (0.13.0)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -248,6 +250,7 @@ DEPENDENCIES
   faker
   formtastic!
   haml (~> 4.0)
+  hstore_accessor
   httparty
   jquery-rails
   minitest
