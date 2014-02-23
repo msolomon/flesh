@@ -5,14 +5,6 @@ describe "User API" do
   let(:user_params) {FactoryGirl.attributes_for(:user).deep_dup}
   let(:user) {FactoryGirl.create(:user)}
 
-  def user_auth_header user_object
-    {
-      'Authorization' => 'Basic ' + Base64.strict_encode64("#{user_object.id}:#{user_object.authentication_token}"),
-      'Content-Type' => 'application/json',
-      'Accept' => 'application/json'
-    }
-  end
-
   def create_user
     user
   end

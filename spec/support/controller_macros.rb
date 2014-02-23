@@ -11,4 +11,12 @@ module ControllerMacros
     end
   end
 
+  def user_auth_header user_object
+    {
+      'Authorization' => 'Basic ' + Base64.strict_encode64("#{user_object.id}:#{user_object.authentication_token}"),
+      'Content-Type' => 'application/json',
+      'Accept' => 'application/json'
+    }
+  end
+
 end
