@@ -152,9 +152,6 @@ describe "User API" do
 
     expect_complete_user get_json['users'].select {|u| u['id'] == first.id}.first, user_params
     expect_filtered_user get_json['users'].select {|u| u['id'] == second.id}.first
-
-
-
   end
 
   def expect_filtered_user user_json
