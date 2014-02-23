@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   include ModelMixin
 
+  before_validation :reformat_phone
   before_save :ensure_authentication_token
 
   # Include default devise modules. Others available are:
@@ -12,8 +13,10 @@ class User < ActiveRecord::Base
   has_many :games, through: :players
   has_many :organizations, through: :games
 
+  validates :screen_name, length: {in: 3..20}, uniqueness: { case_sensitive: false }
   validates :first_name, presence: true 
   validates :last_name, presence: true 
+  validates :phone, phone: :true
   # other fields validated by devise
 
 private
@@ -31,6 +34,22 @@ private
   def ensure_authentication_token
     if authentication_token.blank?
       reset_authentication_token
+    end
+  end
+
+  def reformat_phone
+    return if self.phone == nil
+    
+    numbers_only = self.phone.gsub /\D/, ''
+
+    case numbers_only.length
+    when 0
+      self.phone = nil
+    when 10
+      # assume American if given 10 digits
+      self.phone = "+1#{numbers_only}"
+    else
+      self.phone = "+#{numbers_only}"
     end
   end
 

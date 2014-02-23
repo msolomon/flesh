@@ -6,6 +6,7 @@ FactoryGirl.define do
     last_name "Nye"
     screen_name "science guy"
     authentication_token "testtoken"
+    phone nil
   end
 
 end

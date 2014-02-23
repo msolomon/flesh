@@ -31,12 +31,41 @@ describe "User API" do
   end
 
   it 'can signup with empty phone' do
+    check_phone_signup "", nil, 201
+  end
+
+  it 'can signup with nil phone' do
+    check_phone_signup nil, nil, 201
+  end
+
+  it 'can signup with 10-digit phone' do
+    check_phone_signup "1234567890", "+11234567890", 201
+  end
+
+  it 'can signup with 11-digit phone' do
+    check_phone_signup "12345678900", "+12345678900", 201
+  end
+
+  it 'cannot signup with >15-digit phone' do
+    check_phone_signup "1234567890123456", nil, 422
+  end
+
+  it 'cannot signup with <10-digit phone' do
+    check_phone_signup "123456789", nil, 422
+  end
+
+  it 'extra characters in phone numbers are ignored' do
+    check_phone_signup "xxx+(e)-12345678901", "+12345678901", 201
+  end
+
+  def check_phone_signup number, expected_number, expected_code
     incomplete_user_params = user_params
 
-    incomplete_user_params[:phone] = ""
+    incomplete_user_params[:phone] = number
 
     post api_users_path, user: incomplete_user_params
-    expect(response.response_code).to eq(201)
+    expect(response.response_code).to eq(expected_code)
+    expect(get_json['user']['phone']).to eq(expected_number) unless expected_number == nil
   end
 
   it "can't signup with the same email using a different case" do
