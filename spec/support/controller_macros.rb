@@ -11,16 +11,4 @@ module ControllerMacros
     end
   end
 
-  def get_auth_header(id, authentication_token)
-    user_params = FactoryGirl.attributes_for(:user)
-    id = id || user_params[:id]
-    authentication_token = authentication_token || user_params[:authentication_token]
-
-    {
-      'Authorization' => 'Basic ' + Base64.strict_encode64("#{id}:#{authentication_token}"),
-      'Content-Type' => 'application/json',
-      'Accept' => 'application/json'
-    }
-  end
-
 end

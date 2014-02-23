@@ -4,7 +4,14 @@ describe "User API" do
 
   let(:user_params) {FactoryGirl.attributes_for(:user).deep_dup}
   let(:user) {FactoryGirl.create(:user)}
-  let(:user_auth_header) {get_auth_header(nil, nil).deep_dup}
+
+  def user_auth_header user_object
+    {
+      'Authorization' => 'Basic ' + Base64.strict_encode64("#{user_object.id}:#{user_object.authentication_token}"),
+      'Content-Type' => 'application/json',
+      'Accept' => 'application/json'
+    }
+  end
 
   def create_user
     user
@@ -57,10 +64,10 @@ describe "User API" do
 
     expect(response.response_code).to eq(201)
 
-    expect_complete_user get_json['user']
+    expect_complete_user get_json['user'], user_params
   end
 
-  def expect_complete_user user_json
+  def expect_complete_user(user_json, user_params)
     expect(user_json).not_to eq(nil)
     expect(user_json.keys.map{|key| key.to_sym}).to include(:id,
                                                             :screen_name,
@@ -97,9 +104,10 @@ describe "User API" do
   it 'returns the current user on show' do
     create_user
 
-    get api_users_path, nil, user_auth_header
+    get api_user_path(user), nil, user_auth_header(user)
 
     expect(response.response_code).to eq(200)
+    expect_complete_user get_json['user'], user_params
   end
 
   it 'can login with a capitalized email' do
@@ -113,7 +121,7 @@ describe "User API" do
     post api_user_login_path, user: user_login_params
 
     expect(response.response_code).to eq(200)
-    expect_complete_user get_json['user']
+    expect_complete_user get_json['user'], user_params
   end
 
   it 'gets complete user object on login' do
@@ -126,15 +134,30 @@ describe "User API" do
 
     post api_user_login_path, user: user_login_params, format: :json
 
-    expect_complete_user get_json['user']
+    expect_complete_user get_json['user'], user_params
   end
 
   it 'cannot read private fields of other users' do
     this_user = create_user
     get api_user_path(this_user)
 
-    user_json = get_json['user']
+    expect_filtered_user get_json['user']
+  end
 
+  it 'filters each user as appropriate' do
+    first = user
+    second = FactoryGirl.create(:user, {email: '2@gmail.COM', screen_name: 'skeletor'})
+
+    get api_users_path, nil, user_auth_header(first)
+
+    expect_complete_user get_json['users'].select {|u| u['id'] == first.id}.first, user_params
+    expect_filtered_user get_json['users'].select {|u| u['id'] == second.id}.first
+
+
+
+  end
+
+  def expect_filtered_user user_json
     expect(response.response_code).to eq(200)
     expect(user_json['id']).not_to eq(nil)
     expect(user_json['email']).to eq(nil)
