@@ -50,35 +50,20 @@ group :development do
 end
 
 gem 'thin'
-
 # For Static Assets and Logging
 gem 'rails_12factor', group: :production
-
 gem 'haml', '~> 4.0'
-
 gem 'devise', '~> 3.2'
-
 gem 'activeadmin', github: 'gregbell/active_admin'
 
-
-
 gem "formtastic", github: "justinfrench/formtastic"
-
 gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.1'
-
 gem 'faker'
-
 gem 'populator'
-
 gem 'oj'
-
 gem 'httparty'
-
 gem 'active_model_serializers', '~> 0.8.0'
-
 gem 'obscenity'
-
 gem 'cancan'
-
 gem 'hstore_accessor'
 
