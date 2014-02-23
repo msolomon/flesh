@@ -4,7 +4,9 @@ class Game < ActiveRecord::Base
   has_many :users, through: :players
 
   hstore_accessor :options,
-                  starve_time: :integer
+                  starve_time: :integer,
+                  oz_reveal: :time
 
   validates :starve_time, numericality: { only_integer: true, greater_than: 0 }
+  validates :oz_reveal, oz_reveal: true
 end

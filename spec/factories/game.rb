@@ -10,7 +10,7 @@ FactoryGirl.define do
     game_start Time.now - 2.days
     game_end Time.now + 2.days
     description "A bomb game"
-    options starve_time: 1.day
+    options starve_time: 1.day, oz_reveal: (Time.now + 1.hour).to_i
   end
 
 end
