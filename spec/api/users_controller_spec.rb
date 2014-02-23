@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "User API" do
 
   let(:user_params) {FactoryGirl.attributes_for(:user).deep_dup}
-  let(:user) {FactoryGirl.create(:user).deep_dup}
+  let(:user) {FactoryGirl.create(:user)}
   let(:user_auth_header) {get_auth_header(nil, nil).deep_dup}
 
   def create_user
@@ -130,15 +130,16 @@ describe "User API" do
   end
 
   it 'cannot read private fields of other users' do
-    create_user
+    this_user = create_user
+    get api_user_path(this_user)
 
-    get api_users_path(user_params[:id])
+    user_json = get_json['user']
 
     expect(response.response_code).to eq(200)
-    expect(get_json['id']).not_to eq(nil)
-    expect(get_json['email']).to eq(nil)
-    expect(get_json['phone']).to eq(nil)
-    expect(get_json['authentication_token']).to eq(nil)
+    expect(user_json['id']).not_to eq(nil)
+    expect(user_json['email']).to eq(nil)
+    expect(user_json['phone']).to eq(nil)
+    expect(user_json['authentication_token']).to eq(nil)
   end
 
 end

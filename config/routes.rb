@@ -5,12 +5,12 @@ Rails.application.routes.draw do
     resources :players
     resources :games
     resources :organizations
+    resources :tags
+    resources :users
     resource :user do
       resource :login, only: :create, to: 'sessions#create'
       resource :logout, only: :destroy, to: 'sessions#destroy'
     end
-    resources :users
-    resources :tags
 
   end
 
