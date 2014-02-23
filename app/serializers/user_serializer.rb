@@ -1,4 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
+  include SerializerMixin
+
   # TODO: filter phone and email for authorized users
   attributes :id,
              :screen_name,
@@ -12,27 +14,20 @@ class UserSerializer < ActiveModel::Serializer
 
 
   def avatar_url
+    # TODO: include this (gravatar to start)
     nil
   end
 
   def email
-    nil_if_not_current object.email
+    nil_if_not_me object.email
   end
 
   def phone
-    nil_if_not_current object.phone
+    nil_if_not_me object.phone
   end
 
   def authentication_token
-    nil_if_not_current object.authentication_token
-  end
-
-  def nil_if_not_current field
-    is_current_user? ? field : nil
-  end
-
-  def is_current_user?
-    object == current_user
+    nil_if_not_me object.authentication_token
   end
 
 end
