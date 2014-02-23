@@ -16,7 +16,7 @@ describe "User API" do
   it 'cant signup if user exists' do
     create_user
 
-    post api_users_path, user: user_params, format: :json
+    post api_users_path, user: user_params
 
     expect(response.response_code).to eq(422)
     expect(get_json.keys.map{|key| key.to_sym}).to include(:error, :errors)
@@ -27,7 +27,7 @@ describe "User API" do
 
     incomplete_user_params.delete(:first_name)
 
-    expect{post api_users_path, user: incomplete_user_params, format: :json}.to raise_error(ActionController::ParameterMissing)
+    expect{post api_users_path, user: incomplete_user_params}.to raise_error(ActionController::ParameterMissing)
   end
 
   it 'can signup with empty phone' do
@@ -35,24 +35,24 @@ describe "User API" do
 
     incomplete_user_params[:phone] = ""
 
-    post api_users_path, user: incomplete_user_params, format: :json
+    post api_users_path, user: incomplete_user_params
     expect(response.response_code).to eq(201)
   end
 
   it "can't signup with the same email using a different case" do
     downcased_user_params = user_params.deep_dup
     downcased_user_params[:email].downcase!
-    post api_users_path, user: downcased_user_params, format: :json
+    post api_users_path, user: downcased_user_params
     expect(response.response_code).to eq(201)
 
     upcased_user_params = user_params.deep_dup()
     upcased_user_params[:email].upcase!
-    post api_users_path, user: upcased_user_params, format: :json
+    post api_users_path, user: upcased_user_params
     expect(response.response_code).to eq(422)
   end
 
   it 'gets complete user object on signup' do
-    post api_users_path user: user_params, format: :json
+    post api_users_path user: user_params
 
     expect(response.response_code).to eq(201)
 
@@ -81,7 +81,7 @@ describe "User API" do
   #   user_params = FactoryGirl.attributes_for(:user)
   #   user = User.create(user_params)
 
-  #   post reset_password_api_users_path, user: user_params, format: :json
+  #   post reset_password_api_users_path, user: user_params
 
   #   expect(get_json['message'].presence).not_to eq(nil)
   # end
@@ -124,7 +124,7 @@ describe "User API" do
       password: user_params[:password]
     }
 
-    post api_user_login_path, user: user_login_params, format: :json
+    post api_user_login_path, user: user_login_params
 
     expect_complete_user get_json['user'], user_params
   end
