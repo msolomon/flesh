@@ -57,22 +57,7 @@ describe "User API" do
 
     expect(response.response_code).to eq(201)
 
-    user_json = get_json['user']
-    expect_complete_user user_json
-  end
-
-  it 'gets complete user object on login' do
-    this_user = user
-
-    user_login_params = {
-      email: user_params[:email],
-      password: user_params[:password]
-    }
-
-    post api_user_login_path, user: user_login_params, format: :json
-
-    user_json = get_json['user']
-    expect_complete_user user_json
+    expect_complete_user get_json['user']
   end
 
   def expect_complete_user user_json
@@ -90,6 +75,7 @@ describe "User API" do
     expect(user_json['email']).to ieq(user_params[:email])
     expect(user_json['authentication_token']).not_to eq(nil)
   end
+
   # it 'allows password reset with just email' do
   #   user_params = FactoryGirl.attributes_for(:user)
   #   user = User.create(user_params)
@@ -114,19 +100,31 @@ describe "User API" do
     expect(response.response_code).to eq(200)
   end
 
-  # it 'can login with a capitalized email' do
-  #   email = "TEST@example.com"
+  it 'can login with a capitalized email' do
+    create_user
 
-  #   downcased_user = user.deep_dup
-  #   downcased_user.email = email.downcase
-  #   downcased_user.save
+    user_login_params = {
+      email: user_params[:email].upcase,
+      password: user_params[:password]
+    }
 
-  #   downcased_user_params = user_params.deep_dup
-  #   downcased_user_params[:email] = email
+    post api_user_login_path, user: user_login_params
 
-  #   post api_users_login_path, user_auth_header, user: downcased_user_params
+    expect(response.response_code).to eq(200)
+    expect_complete_user get_json['user']
+  end
 
-  #   expect(response.response_code).to eq(200)
-  # end
+  it 'gets complete user object on login' do
+    this_user = user
+
+    user_login_params = {
+      email: user_params[:email],
+      password: user_params[:password]
+    }
+
+    post api_user_login_path, user: user_login_params, format: :json
+
+    expect_complete_user get_json['user']
+  end
 
 end
