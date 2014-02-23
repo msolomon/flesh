@@ -20,13 +20,11 @@ class Player < ActiveRecord::Base
 
 
   def canTag?
-    # TODO: implement
-    return false
+    return [:oz, :zombie].include? true_status
   end
 
   def canBeTagged?
-    # TODO: implement
-    return false
+    true_status == :human
   end
 
   def true_status
