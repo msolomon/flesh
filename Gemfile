@@ -59,7 +59,6 @@ group :production do
 end
 
 # For Static Assets and Logging
-gem 'rails_12factor', group: :production
 gem 'haml', '~> 4.0'
 gem 'devise', '~> 3.2'
 gem 'activeadmin', github: 'gregbell/active_admin'
