@@ -2,6 +2,8 @@ require 'obscenity'
 require 'SecureRandom'
 
 class Player < ActiveRecord::Base
+  include ModelMixin
+  
   before_validation :ensure_human_code
 
   enum oz_status: [:uninterested, :interested, :unconfirmed, :confirmed]

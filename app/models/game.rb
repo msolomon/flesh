@@ -1,4 +1,6 @@
 class Game < ActiveRecord::Base
+  include ModelMixin
+  
   belongs_to :organization
   has_many :players
   has_many :users, through: :players
