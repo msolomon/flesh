@@ -5,5 +5,5 @@ bundler_args: --without production development
 services:
   - postgresql: 9.3
 before_script:
-  - bundle exec rake db:migrate --trace
   - psql -c 'CREATE DATABASE flesh_test;' -U postgres
+  - bundle exec rake db:migrate --trace
