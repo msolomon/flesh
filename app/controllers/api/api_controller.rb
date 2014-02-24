@@ -24,8 +24,15 @@ class Api::ApiController < ApplicationController
     end
   end
 
+  def respond_with_error_string(error)
+      render json: string_to_error_document(error), status: 422
+  end
 
-  private
+  def respond_with_error_document(model)
+      render json: model.to_error_document, status: 422
+  end
+
+private
   def auth_params
     params = {user_id: nil, authentication_token: nil}
 
