@@ -1,9 +1,6 @@
 source 'https://rubygems.org'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0.rc1'
-
-# Use sqlite3 as the database for Active Record
 gem 'pg'
 
 # Use SCSS for stylesheets
@@ -21,9 +18,6 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-
 gem 'polyamorous', github: 'activerecord-hackery/polyamorous'
 
 # Use ActiveModel has_secure_password
@@ -35,21 +29,34 @@ gem 'polyamorous', github: 'activerecord-hackery/polyamorous'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :development, :test do
-  gem 'rspec-rails', '2.14.0'
-  gem 'factory_girl_rails', '4.2.0'
-  gem 'watchr'
-  gem 'debugger'
+group :test do
   gem 'minitest'
   gem 'webmock'
   gem 'database_cleaner'
 end
 
-group :development do
-  gem 'spring'
+group :development, :test do
+  gem 'rspec-rails', '2.14.0'
+  gem 'factory_girl_rails', '4.2.0'
+  gem 'watchr'
+  gem 'debugger'
+  gem 'faker'
 end
 
-gem 'thin'
+group :development do
+  gem 'spring'
+  gem 'travis-lint'
+end
+
+group :development, :production do
+  gem 'thin'
+  gem 'turbolinks'
+end
+
+group :production do
+  gem 'rails_12factor'
+end
+
 # For Static Assets and Logging
 gem 'rails_12factor', group: :production
 gem 'haml', '~> 4.0'
@@ -58,7 +65,6 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 
 gem "formtastic", github: "justinfrench/formtastic"
 gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.1'
-gem 'faker'
 gem 'populator'
 gem 'oj'
 gem 'httparty'
