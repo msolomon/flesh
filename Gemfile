@@ -34,6 +34,7 @@ group :test do
   gem 'webmock'
   gem 'database_cleaner'
   gem 'rake'
+  gem 'rubysl-securerandom'
 end
 
 group :development, :test do
