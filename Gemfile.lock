@@ -264,6 +264,7 @@ DEPENDENCIES
   populator
   rails (= 4.1.0.rc1)
   rails_12factor
+  rake
   ransack!
   rspec-rails (= 2.14.0)
   sass-rails (~> 4.0.0.rc1)

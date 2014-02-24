@@ -33,6 +33,7 @@ group :test do
   gem 'minitest'
   gem 'webmock'
   gem 'database_cleaner'
+  gem 'rake'
 end
 
 group :development, :test do
