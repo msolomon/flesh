@@ -4,3 +4,5 @@ rvm:
 bundler_args: --without production development
 services:
   - postgresql: 9.3
+before_script:
+  - psql -c 'CREATE DATABASE flesh_test;' -U postgres
