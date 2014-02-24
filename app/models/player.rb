@@ -1,5 +1,5 @@
 require 'obscenity'
-require 'SecureRandom'
+require 'securerandom'
 
 class Player < ActiveRecord::Base
   include ModelMixin
