@@ -15,5 +15,5 @@
 ```bash
 bundle install
 rake db:setup db:populate
-rake spec
+rake
 ```
