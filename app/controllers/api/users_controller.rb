@@ -15,7 +15,7 @@ class Api::UsersController < Api::ApiController
       sign_in(:user, @user, store: false)
       respond_with(:api, @user, status: :created)
     else
-      render json: @user.to_error_document, status: 422
+      respond_with_error_document @user
     end
 
   end
@@ -26,7 +26,7 @@ class Api::UsersController < Api::ApiController
     if @user.update(params[:user].permit(signup_params))
       respond_with(@user)
     else
-      render json: @user.to_error_document, status: 422
+      respond_with_error_document @user
     end
   end
 
