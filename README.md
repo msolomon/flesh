@@ -1,6 +1,8 @@
 
 # flesh
 
+[![Build Status](https://travis-ci.org/msolomon/flesh.png?branch=master)](https://travis-ci.org/msolomon/flesh)
+
 ## Setup
 
 1. Install Postgres 9 (I'm using 9.3 installed via `brew`)
