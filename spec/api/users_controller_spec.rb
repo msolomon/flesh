@@ -30,6 +30,20 @@ describe "User API" do
     expect{post api_users_path, user: incomplete_user_params}.to raise_error(ActionController::ParameterMissing)
   end
 
+  it 'password resets with email' do
+    user = create_user
+
+    post reset_password_api_user_path, user: {email: user.email}
+
+    expect(get_json['message'].presence).not_to eq(nil)
+  end
+
+  it 'password does not reset without email' do
+    create_user
+
+    expect{post reset_password_api_user_path}.to raise_error(ActionController::ParameterMissing)
+  end
+
   it 'can signup with empty phone' do
     check_phone_signup "", nil, 201
   end

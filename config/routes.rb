@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resource :user do
       resource :login, only: :create, to: 'sessions#create'
       resource :logout, only: :destroy, to: 'sessions#destroy'
+      post :reset_password, only: :reset_password, path: 'reset_password'
     end
 
   end

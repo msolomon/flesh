@@ -30,6 +30,18 @@ class Api::UsersController < Api::ApiController
     end
   end
 
+  def reset_password
+    email = params.require(:user).require(:email)
+    user = email && User.where(email: email).first
+
+    if user
+      user.send_reset_password_instructions
+      render json: {message: "Your password reset information has been emailed to you"}, status: 200
+    else
+      respond_with_error_string "No user exists with that email"
+    end
+  end
+
 private
   def signup_params
     user_params = params.require(:user)
