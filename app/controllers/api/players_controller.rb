@@ -29,7 +29,7 @@ class Api::PlayersController < Api::ApiController
     wants_to_be_oz = player_params[:oz_pool]
     oz_status = wants_to_be_oz ? :interested : :uninterested
 
-    @player = Player.new(user: current_user, game: game_to_join, oz_status: oz_status)
+    @player = Player.create_with(oz_status: oz_status).find_or_create_by(user: current_user, game: game_to_join)
 
     if @player.save
       respond_with(:api, @player, status: :created)

@@ -15,20 +15,14 @@ describe "Player API" do
     expect(response.status).to eq(201)
     player_json = get_json['player']
     expect(player_json['user_id']).to eq(user.id)
+  end
 
+  it 'cannot join closed game' do
+    game = FactoryGirl.create(:game, {registration_start: 1.minute.from_now})
+    user = create_user
 
-
-
-
-
-    # TODO: display OZ interest to current users
-    # TODO: check results more carefully 
-    # TODO: can't join closed-for-rgeistration game
-
-
-
-
-
+    post api_players_path, join_params(game.id, false), user_auth_header(user) 
+    expect(response.status).to eq(422)
   end
 
   it 'can join game without oz_pool' do
@@ -39,6 +33,23 @@ describe "Player API" do
     expect(response.status).to eq(201)
     player_json = get_json['player']
     expect(player_json['user_id']).to eq(user.id)
+  end
+
+  it 'joining twice is idempotent' do
+    game = FactoryGirl.create(:game)
+    user = create_user
+
+    post api_players_path, join_params(game.id, false), user_auth_header(user) 
+    expect(response.status).to eq(201)
+    player_id = get_json['player']['id']
+
+    post api_players_path, join_params(game.id, false), user_auth_header(user) 
+    expect(response.status).to eq(201)
+    expect(player_id).to eq(get_json['player']['id'])
+  end
+
+  it 'cannot join game that does not exist' do
+    expect{post api_players_path, Hash[:player, Hash[:game_id, 1000]].to_json, user_auth_header(create_user)}.to  raise_error(ActiveRecord::RecordNotFound)
   end
 
   it 'oz_pool uninterested status works for current user' do
