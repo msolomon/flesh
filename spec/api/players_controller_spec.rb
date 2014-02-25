@@ -1,6 +1,44 @@
 require 'spec_helper'
 
 describe "Player API" do
+  let(:create_user) {FactoryGirl.create(:user)}
+
+  def join_params game_id, oz_pool
+    Hash[:player, Hash[:game_id, game_id, :oz_pool, oz_pool]].to_json
+  end
+
+  it 'joins game' do
+    game = FactoryGirl.create(:game)
+    user = create_user
+
+    post api_players_path, join_params(game.id, false), user_auth_header(user) 
+    expect(response.status).to eq(201)
+    player_json = get_json['player']
+    expect(player_json['user_id']).to eq(user.id)
+
+
+
+
+
+
+    # TODO: display OZ interest to current users
+    # TODO: check results more carefully 
+
+
+
+
+
+  end
+
+  it 'can join game without oz_pool' do
+    game = FactoryGirl.create(:game)
+    user = create_user
+
+    post api_players_path, Hash[:player, Hash[:game_id, game.id]].to_json, user_auth_header(user) 
+    expect(response.status).to eq(201)
+    player_json = get_json['player']
+    expect(player_json['user_id']).to eq(user.id)
+  end
 
   it 'shows human stauses correctly' do
     expect_statuses(create_human, :human, :human)
