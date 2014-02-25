@@ -23,6 +23,7 @@ describe "Player API" do
 
     # TODO: display OZ interest to current users
     # TODO: check results more carefully 
+    # TODO: can't join closed-for-rgeistration game
 
 
 
@@ -38,6 +39,44 @@ describe "Player API" do
     expect(response.status).to eq(201)
     player_json = get_json['player']
     expect(player_json['user_id']).to eq(user.id)
+  end
+
+  it 'oz_pool uninterested status works for current user' do
+    user = create_user
+    player = FactoryGirl.create(:player, {user: user, oz_status: :uninterested})
+
+    get api_player_path(player.id), nil, user_auth_header(user) 
+    expect(response.status).to eq(200)
+    expect(get_json['player']['oz_status']).to eq('uninterested')
+    player_json = get_json['player']
+  end
+
+  it 'oz_pool unconfirmed status works for current user' do
+    user = create_user
+    player = FactoryGirl.create(:player, {user: user, oz_status: :unconfirmed})
+
+    get api_player_path(player.id), nil, user_auth_header(user) 
+    expect(response.status).to eq(200)
+    expect(get_json['player']['oz_status']).to eq('unconfirmed')
+  end
+
+  it 'oz_pool nil for other users' do
+    user = create_user
+    user2 = FactoryGirl.create(:user, {email: "2@2.com", screen_name: "num2"})
+    player = FactoryGirl.create(:player, {user: user, oz_status: :unconfirmed})
+
+    get api_player_path(player.id), nil, user_auth_header(user2) 
+    expect(response.status).to eq(200)
+    expect(get_json['player']['oz_status']).to eq(nil)
+  end
+
+  it 'oz_pool nil for anonymous' do
+    user = create_user
+    player = FactoryGirl.create(:player, {user: user, oz_status: :unconfirmed})
+
+    get api_player_path(player.id)
+    expect(response.status).to eq(200)
+    expect(get_json['player']['oz_status']).to eq(nil)
   end
 
   it 'shows human stauses correctly' do

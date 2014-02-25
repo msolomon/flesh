@@ -1,7 +1,7 @@
 class PlayerSerializer < ActiveModel::Serializer
   include SerializerMixin
 
-  attributes :id, :user_id, :game_id, :status, :last_fed
+  attributes :id, :user_id, :game_id, :status, :last_fed, :oz_status
 
   def status
     if object.true_status == :oz then
@@ -17,5 +17,11 @@ class PlayerSerializer < ActiveModel::Serializer
 
   def last_fed
     status == :zombie ? object.last_fed : nil
+  end
+
+  def oz_status
+    if object.user == current_user
+      object.oz_status
+    end
   end
 end
