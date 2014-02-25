@@ -13,7 +13,7 @@ describe "User API" do
     match(%r{#{string_arg}}i)
   end
 
-  it 'cant signup if user exists' do
+  it 'cannot signup if user exists' do
     create_user
 
     post api_users_path, user: user_params

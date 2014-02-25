@@ -1,3 +1,5 @@
+require 'digest/md5'
+
 class UserSerializer < ActiveModel::Serializer
   include SerializerMixin
 
@@ -14,8 +16,8 @@ class UserSerializer < ActiveModel::Serializer
 
 
   def avatar_url
-    # TODO: include this (gravatar to start)
-    nil
+    email_hash = Digest::MD5.hexdigest(object.email.downcase.gsub(/\w/, ''))
+    "http://www.gravatar.com/avatar/#{email_hash}"
   end
 
   def email
