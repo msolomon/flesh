@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :players
   has_many :games, through: :players
   has_many :organizations, through: :games
-  
+
   has_many :event_links, as: :eventable
   has_many :events, through: :event_links
 

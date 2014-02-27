@@ -2,10 +2,6 @@ require 'spec_helper'
 
 describe "Player model" do
 
-  def create_user
-    user
-  end
-
   it 'marks oz' do
     player = FactoryGirl.create(:player, {oz_status: :confirmed, game: FactoryGirl.create(:game, {game_start: Time.now - 5.hours})})
 
@@ -46,6 +42,23 @@ describe "Player model" do
     expect(player.true_status).to eq(:human)
     expect(player.canTag?).to eq(false)
     expect(player.canBeTagged?).to eq(true)
+  end
+
+  it 'records join game events on create' do
+    user = FactoryGirl.create(:user)
+    organization = FactoryGirl.create(:organization)
+    game = FactoryGirl.create(:game, organization: organization)
+
+    user_events_count = user.events.count
+    organization_events_count = organization.events.count
+    game_events_count = game.events.count
+
+    player = FactoryGirl.create(:player, user: user, game: game)
+
+    expect(player.user.events.count).to eq(user_events_count + 1)
+    expect(player.game.events.count).to eq(game_events_count + 1)
+    expect(player.game.organization.events.count).to eq(organization_events_count + 1)
+    expect(player.events.count).to eq(1)
   end
 
 end

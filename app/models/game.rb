@@ -5,6 +5,9 @@ class Game < ActiveRecord::Base
   has_many :players
   has_many :users, through: :players
 
+  has_many :event_links, as: :eventable
+  has_many :events, through: :event_links
+
   hstore_accessor :options,
                   starve_time: :integer,
                   oz_reveal: :time

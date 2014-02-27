@@ -6,6 +6,8 @@ class Player < ActiveRecord::Base
   
   before_validation :ensure_human_code
 
+  after_create :record_join_event
+
   enum oz_status: [:uninterested, :interested, :unconfirmed, :confirmed]
 
   belongs_to :user
@@ -78,6 +80,18 @@ private
     if human_code.blank?
       add_human_code
     end
+  end
+
+  def record_join_event
+    event = Event.create(event_type: :join_game, data: {
+      player_id: self.id,
+      game_id: self.game_id
+    })
+
+    self.events << event
+    self.user.events << event
+    self.game.events << event
+    self.game.organization.events << event
   end
 
 end
