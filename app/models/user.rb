@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   before_validation :reformat_phone
   before_save :ensure_authentication_token
 
+  after_create :record_join_event
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, 
@@ -54,6 +56,14 @@ private
     else
       self.phone = "+#{numbers_only}"
     end
+  end
+
+  def record_join_event
+    event = Event.create(event_type: :join_flesh, data: {
+      user_id: self.id
+    })
+
+    self.events << event
   end
 
 end
