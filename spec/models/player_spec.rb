@@ -44,10 +44,29 @@ describe "Player model" do
     expect(player.canBeTagged?).to eq(true)
   end
 
-  it 'records join game events on create' do
+  it 'records join game and join organization events on create' do
     user = FactoryGirl.create(:user)
     organization = FactoryGirl.create(:organization)
     game = FactoryGirl.create(:game, organization: organization)
+
+    user_events_count = user.events.count
+    organization_events_count = organization.events.count
+    game_events_count = game.events.count
+
+    player = FactoryGirl.create(:player, user: user, game: game)
+
+    expect(player.user.events.count).to eq(user_events_count + 2)
+    expect(player.game.events.count).to eq(game_events_count + 1)
+    expect(player.game.organization.events.count).to eq(organization_events_count + 2)
+    expect(player.events.count).to eq(1)
+  end
+
+  it 'does not record organization join event when joining a second game' do
+    user = FactoryGirl.create(:user)
+    organization = FactoryGirl.create(:organization)
+    oldgame = FactoryGirl.create(:game, organization: organization)
+    oldplayer = FactoryGirl.create(:player, user: user, game: oldgame)
+    game = FactoryGirl.create(:game, organization: organization, slug: "new")
 
     user_events_count = user.events.count
     organization_events_count = organization.events.count

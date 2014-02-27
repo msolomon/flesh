@@ -83,15 +83,27 @@ private
   end
 
   def record_join_event
-    event = Event.create(event_type: :join_game, data: {
+    unless self.user.games.where.not(id: self.game.id).pluck(:organization_id).include? self.game.organization.id
+      join_organization_event = Event.create(event_type: :join_organization, data: {
+        user_id: self.user.id,
+        game_id: self.game.id,
+        organization_id: self.game.organization,
+        player_id: self.id
+      })
+
+      self.user.events << join_organization_event
+      self.game.organization.events << join_organization_event
+    end
+
+    join_game_event = Event.create(event_type: :join_game, data: {
       player_id: self.id,
       game_id: self.game_id
     })
 
-    self.events << event
-    self.user.events << event
-    self.game.events << event
-    self.game.organization.events << event
+    self.events << join_game_event
+    self.user.events << join_game_event
+    self.game.events << join_game_event
+    self.game.organization.events << join_game_event
   end
 
 end
