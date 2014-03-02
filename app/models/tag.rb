@@ -18,7 +18,7 @@ class Tag < ActiveRecord::Base
   end
 
   def game
-    read_attribute(:game) || self.taggee.nil? ? nil : self.taggee.game
+    read_attribute(:game) || self.taggee.game unless self.taggee.nil?
   end
 
 private
