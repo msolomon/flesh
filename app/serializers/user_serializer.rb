@@ -23,11 +23,11 @@ class UserSerializer < ActiveModel::Serializer
     is_user_me?
   end
 
-  def phone
+  def include_phone?
     is_user_me?
   end
 
-  def authentication_token
+  def include_authentication_token?
     is_user_me?
   end
 

@@ -1,7 +1,7 @@
 module SerializerMixin
 
   def is_user_me?
-    is_me? user
+    is_me? object
   end
 
   def is_me? user
