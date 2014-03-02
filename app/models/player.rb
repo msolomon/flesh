@@ -31,6 +31,10 @@ class Player < ActiveRecord::Base
     true_status == :human
   end
 
+  def is_stealthed?
+    true_status == :oz && !game.oz_revealed?
+  end
+
   def true_status
     status = :human
 

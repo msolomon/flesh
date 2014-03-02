@@ -41,6 +41,28 @@ describe "Tag API" do
     expect(response.status).to eq(201)
   end
 
+  it 'stealthed oz is not revealed in tag' do
+    game = FactoryGirl.create(:game, {game_start: Time.now - 1.hour})
+    human = FactoryGirl.create(:player, game: game)
+    oz = FactoryGirl.create(:player, game: game, human_code: "zcode", oz_status: :confirmed,
+      user: FactoryGirl.create(:user, {email: "z@z.com", screen_name: "zombocom"})
+    )
+
+    request_via_redirect :post, api_tags_path, tag_params, user_auth_header(oz.user)
+    expect(get_json['tag']['tagger_id']).to eq(0)
+  end
+
+  it 'revealed oz is revealed in tag' do
+    game = FactoryGirl.create(:game, {game_start: Time.now - 1.hour, oz_reveal: Time.now - 1.minute})
+    human = FactoryGirl.create(:player, game: game)
+    oz = FactoryGirl.create(:player, game: game, human_code: "zcode", oz_status: :confirmed,
+      user: FactoryGirl.create(:user, {email: "z@z.com", screen_name: "zombocom"})
+    )
+
+    request_via_redirect :post, api_tags_path, tag_params, user_auth_header(oz.user)
+    expect(get_json['tag']['tagger_id']).to eq(oz.id)
+  end
+
   it 'zombie cannot tag itself' do
     game = FactoryGirl.create(:game)
     zombie = FactoryGirl.create(:player, game: game, human_code: "hcode",
