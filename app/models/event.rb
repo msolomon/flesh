@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   include ModelMixin
 
-  default_scope { distinct }
+  default_scope { distinct.order(created_at: :desc) }
 
   enum event_type: [
     :unknown,

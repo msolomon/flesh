@@ -13,6 +13,8 @@ Rails.application.routes.draw do
       post :reset_password, only: :reset_password, path: 'reset_password'
     end
 
+    get 'events/:action/:id', controller: :events, as: :events
+
   end
 
   devise_for :users, ActiveAdmin::Devise.config
