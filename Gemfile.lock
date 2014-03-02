@@ -242,7 +242,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_model_serializers (~> 0.8.0)
+  active_model_serializers (~> 0.8.1)
   activeadmin!
   cancan
   coffee-rails (~> 4.0.0)
