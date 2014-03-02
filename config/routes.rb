@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
     get 'events/:action/:id', controller: :events, as: :events
 
+    post 'twilio/sms', controller: :twilio, action: :sms
+
   end
 
   devise_for :users, ActiveAdmin::Devise.config

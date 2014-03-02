@@ -74,4 +74,5 @@ gem 'active_model_serializers', '~> 0.8.1'
 gem 'obscenity'
 gem 'cancan'
 gem 'hstore_accessor'
+gem 'twilio-ruby'
 
