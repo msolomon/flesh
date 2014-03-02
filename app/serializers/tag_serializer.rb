@@ -1,4 +1,6 @@
 class TagSerializer < ActiveModel::Serializer
+  include SerializerMixin
+
   embed :ids
 
   attributes :id, :claimed
@@ -8,7 +10,7 @@ class TagSerializer < ActiveModel::Serializer
 
   def tagger
     tagger_player = object.tagger
-    if tagger_player.is_stealthed?
+    if !is_me?(tagger_player.user) && tagger_player.is_stealthed?
       Player.new(id: 0)
     else
       tagger_player

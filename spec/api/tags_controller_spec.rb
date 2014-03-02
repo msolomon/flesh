@@ -41,7 +41,7 @@ describe "Tag API" do
     expect(response.status).to eq(201)
   end
 
-  it 'stealthed oz is not revealed in tag' do
+  it 'stealthed oz is revealed to itself in tag' do
     game = FactoryGirl.create(:game, {game_start: Time.now - 1.hour})
     human = FactoryGirl.create(:player, game: game)
     oz = FactoryGirl.create(:player, game: game, human_code: "zcode", oz_status: :confirmed,
@@ -49,7 +49,8 @@ describe "Tag API" do
     )
 
     request_via_redirect :post, api_tags_path, tag_params, user_auth_header(oz.user)
-    expect(get_json['tag']['tagger_id']).to eq(0)
+    expect(response.status).to eq(201)
+    expect(get_json['tag']['tagger_id']).to eq(oz.id)
   end
 
   it 'revealed oz is revealed in tag' do
