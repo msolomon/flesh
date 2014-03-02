@@ -50,11 +50,11 @@ group :development do
 end
 
 group :development, :production do
-  gem 'thin'
   gem 'turbolinks'
 end
 
 group :production do
+  gem 'thin'
   gem 'rails_12factor'
 end
 
