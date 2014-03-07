@@ -1,11 +1,11 @@
 module SerializerMixin
 
-  def nil_if_not_me field
-    is_user_me? ? field : nil
+  def is_user_me?
+    is_me? object
   end
 
-  def is_user_me?
-    object == current_user
+  def is_me? user
+    user && user == current_user
   end
 
 end

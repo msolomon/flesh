@@ -1,7 +1,8 @@
+require 'digest/md5'
+
 class UserSerializer < ActiveModel::Serializer
   include SerializerMixin
 
-  # TODO: filter phone and email for authorized users
   attributes :id,
              :screen_name,
              :email,
@@ -14,20 +15,20 @@ class UserSerializer < ActiveModel::Serializer
 
 
   def avatar_url
-    # TODO: include this (gravatar to start)
-    nil
+    email_hash = Digest::MD5.hexdigest(object.email.downcase.gsub(/\w/, ''))
+    "http://www.gravatar.com/avatar/#{email_hash}"
   end
 
-  def email
-    nil_if_not_me object.email
+  def include_email?
+    is_user_me?
   end
 
-  def phone
-    nil_if_not_me object.phone
+  def include_phone?
+    is_user_me?
   end
 
-  def authentication_token
-    nil_if_not_me object.authentication_token
+  def include_authentication_token?
+    is_user_me?
   end
 
 end

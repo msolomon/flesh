@@ -10,7 +10,12 @@ Rails.application.routes.draw do
     resource :user do
       resource :login, only: :create, to: 'sessions#create'
       resource :logout, only: :destroy, to: 'sessions#destroy'
+      post :reset_password, only: :reset_password, path: 'reset_password'
     end
+
+    get 'events/:action/:id', controller: :events, as: :events
+
+    post 'twilio/sms', controller: :twilio, action: :sms
 
   end
 

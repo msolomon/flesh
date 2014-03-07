@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   before_validation :reformat_phone
   before_save :ensure_authentication_token
 
+  after_create :record_join_event
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, 
@@ -12,6 +14,9 @@ class User < ActiveRecord::Base
   has_many :players
   has_many :games, through: :players
   has_many :organizations, through: :games
+
+  has_many :event_links, as: :eventable
+  has_many :events, through: :event_links
 
   validates :screen_name, length: {in: 3..20}, uniqueness: { case_sensitive: false }
   validates :first_name, presence: true 
@@ -51,6 +56,14 @@ private
     else
       self.phone = "+#{numbers_only}"
     end
+  end
+
+  def record_join_event
+    event = Event.create(event_type: :join_flesh, data: {
+      user_id: self.id
+    })
+
+    self.events << event
   end
 
 end

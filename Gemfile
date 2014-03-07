@@ -47,14 +47,16 @@ end
 group :development do
   gem 'spring'
   gem 'travis-lint'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :development, :production do
-  gem 'thin'
   gem 'turbolinks'
 end
 
 group :production do
+  gem 'thin'
   gem 'rails_12factor'
 end
 
@@ -68,8 +70,9 @@ gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.1'
 gem 'populator'
 gem 'oj'
 gem 'httparty'
-gem 'active_model_serializers', '~> 0.8.0'
+gem 'active_model_serializers', '~> 0.8.1'
 gem 'obscenity'
 gem 'cancan'
 gem 'hstore_accessor'
+gem 'twilio-ruby'
 

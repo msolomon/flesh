@@ -15,7 +15,7 @@ class Api::UsersController < Api::ApiController
       sign_in(:user, @user, store: false)
       respond_with(:api, @user, status: :created)
     else
-      render json: @user.to_error_document, status: 422
+      respond_with_error_document @user
     end
 
   end
@@ -26,7 +26,19 @@ class Api::UsersController < Api::ApiController
     if @user.update(params[:user].permit(signup_params))
       respond_with(@user)
     else
-      render json: @user.to_error_document, status: 422
+      respond_with_error_document @user
+    end
+  end
+
+  def reset_password
+    email = params.require(:user).require(:email)
+    user = email && User.where(email: email).first
+
+    if user
+      user.send_reset_password_instructions
+      render json: {message: "Your password reset information has been emailed to you"}, status: 200
+    else
+      respond_with_error_string "No user exists with that email"
     end
   end
 

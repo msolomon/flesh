@@ -15,6 +15,10 @@ class Api::TagsController < Api::ApiController
       return respond_with_error_string "Invalid human code"
     end
 
+    if !taggee.game.running?
+      return respond_with_error_string "Cannot tag in closed games (#{taggee.game.running_error_string})"
+    end
+
     if !taggee.canBeTagged?
       return respond_with_error_string "That player cannot be tagged because they are #{taggee.true_status}"
     end

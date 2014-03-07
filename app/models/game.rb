@@ -5,6 +5,9 @@ class Game < ActiveRecord::Base
   has_many :players
   has_many :users, through: :players
 
+  has_many :event_links, as: :eventable
+  has_many :events, through: :event_links
+
   hstore_accessor :options,
                   starve_time: :integer,
                   oz_reveal: :time
@@ -14,6 +17,31 @@ class Game < ActiveRecord::Base
 
   def oz_revealed?
     oz_reveal <= Time.now
+  end
+
+  def running?
+    game_start <= Time.now && Time.now <= game_end
+  end
+
+  def running_error_string
+    if game_start > Time.now
+      "The game has not yet begun"
+    elsif game_end < Time.now
+      "The game has already ended"
+    end
+  end
+
+  def registration_open?
+    registration_start <= Time.now && Time.now <= registration_end
+  end
+
+  def registration_open_error_string
+    if registration_start > Time.now
+      "The registration period has not yet begun"
+    elsif registration_end < Time.now
+      "The registration period has already ended"
+    end
+        
   end
   
 end

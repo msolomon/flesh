@@ -1,6 +1,94 @@
 require 'spec_helper'
 
 describe "Player API" do
+  let(:create_user) {FactoryGirl.create(:user)}
+
+  def join_params game_id, oz_pool
+    Hash[:player, Hash[:game_id, game_id, :oz_pool, oz_pool]].to_json
+  end
+
+  it 'joins game' do
+    game = FactoryGirl.create(:game)
+    user = create_user
+
+    post api_players_path, join_params(game.id, false), user_auth_header(user) 
+    expect(response.status).to eq(201)
+    player_json = get_json['player']
+    expect(player_json['user_id']).to eq(user.id)
+  end
+
+  it 'cannot join closed game' do
+    game = FactoryGirl.create(:game, {registration_start: 1.minute.from_now})
+    user = create_user
+
+    post api_players_path, join_params(game.id, false), user_auth_header(user) 
+    expect(response.status).to eq(422)
+  end
+
+  it 'can join game without oz_pool' do
+    game = FactoryGirl.create(:game)
+    user = create_user
+
+    post api_players_path, Hash[:player, Hash[:game_id, game.id]].to_json, user_auth_header(user) 
+    expect(response.status).to eq(201)
+    player_json = get_json['player']
+    expect(player_json['user_id']).to eq(user.id)
+  end
+
+  it 'joining twice is idempotent' do
+    game = FactoryGirl.create(:game)
+    user = create_user
+
+    post api_players_path, join_params(game.id, false), user_auth_header(user) 
+    expect(response.status).to eq(201)
+    player_id = get_json['player']['id']
+
+    post api_players_path, join_params(game.id, false), user_auth_header(user) 
+    expect(response.status).to eq(201)
+    expect(player_id).to eq(get_json['player']['id'])
+  end
+
+  it 'cannot join game that does not exist' do
+    expect{post api_players_path, Hash[:player, Hash[:game_id, 1000]].to_json, user_auth_header(create_user)}.to  raise_error(ActiveRecord::RecordNotFound)
+  end
+
+  it 'oz_pool uninterested status works for current user' do
+    user = create_user
+    player = FactoryGirl.create(:player, {user: user, oz_status: :uninterested})
+
+    get api_player_path(player.id), nil, user_auth_header(user) 
+    expect(response.status).to eq(200)
+    expect(get_json['player']['oz_status']).to eq('uninterested')
+    player_json = get_json['player']
+  end
+
+  it 'oz_pool unconfirmed status works for current user' do
+    user = create_user
+    player = FactoryGirl.create(:player, {user: user, oz_status: :unconfirmed})
+
+    get api_player_path(player.id), nil, user_auth_header(user) 
+    expect(response.status).to eq(200)
+    expect(get_json['player']['oz_status']).to eq('unconfirmed')
+  end
+
+  it 'oz_pool nil for other users' do
+    user = create_user
+    user2 = FactoryGirl.create(:user, {email: "2@2.com", screen_name: "num2"})
+    player = FactoryGirl.create(:player, {user: user, oz_status: :unconfirmed})
+
+    get api_player_path(player.id), nil, user_auth_header(user2) 
+    expect(response.status).to eq(200)
+    expect(get_json['player']['oz_status']).to eq(nil)
+  end
+
+  it 'oz_pool nil for anonymous' do
+    user = create_user
+    player = FactoryGirl.create(:player, {user: user, oz_status: :unconfirmed})
+
+    get api_player_path(player.id)
+    expect(response.status).to eq(200)
+    expect(get_json['player']['oz_status']).to eq(nil)
+  end
 
   it 'shows human stauses correctly' do
     expect_statuses(create_human, :human, :human)

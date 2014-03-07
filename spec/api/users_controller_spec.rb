@@ -13,7 +13,7 @@ describe "User API" do
     match(%r{#{string_arg}}i)
   end
 
-  it 'cant signup if user exists' do
+  it 'cannot signup if user exists' do
     create_user
 
     post api_users_path, user: user_params
@@ -28,6 +28,20 @@ describe "User API" do
     incomplete_user_params.delete(:first_name)
 
     expect{post api_users_path, user: incomplete_user_params}.to raise_error(ActionController::ParameterMissing)
+  end
+
+  it 'password resets with email' do
+    user = create_user
+
+    post reset_password_api_user_path, user: {email: user.email}
+
+    expect(get_json['message'].presence).not_to eq(nil)
+  end
+
+  it 'password does not reset without email' do
+    create_user
+
+    expect{post reset_password_api_user_path}.to raise_error(ActionController::ParameterMissing)
   end
 
   it 'can signup with empty phone' do
