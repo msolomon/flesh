@@ -1,7 +1,9 @@
 class PlayerSerializer < ActiveModel::Serializer
   include SerializerMixin
+  embed :ids, include: true
 
   attributes :id, :user_id, :game_id, :status, :last_fed, :oz_status
+  has_one :user
 
   def status
     if object.true_status == :oz then

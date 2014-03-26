@@ -16,7 +16,7 @@ class UserSerializer < ActiveModel::Serializer
 
   def avatar_url
     email_hash = Digest::MD5.hexdigest(object.email.downcase.gsub(/\w/, ''))
-    "http://www.gravatar.com/avatar/#{email_hash}"
+    "http://www.gravatar.com/avatar/#{email_hash}?d=retro"
   end
 
   def include_email?
