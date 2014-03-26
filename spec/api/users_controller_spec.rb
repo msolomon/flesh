@@ -120,22 +120,6 @@ describe "User API" do
     expect(user_json['authentication_token']).not_to eq(nil)
   end
 
-  # it 'allows password reset with just email' do
-  #   user_params = FactoryGirl.attributes_for(:user)
-  #   user = User.create(user_params)
-
-  #   post reset_password_api_users_path, user: user_params
-
-  #   expect(get_json['message'].presence).not_to eq(nil)
-  # end
-
-  # it 'rejects password reset without email' do
-  #   user_params = FactoryGirl.attributes_for(:user)
-  #   user = User.create(user_params)
-
-  #   expect{post reset_password_api_users_path}.to raise_error(ActionController::ParameterMissing)
-  # end
-
   it 'returns the current user on show' do
     create_user
 
@@ -187,6 +171,34 @@ describe "User API" do
 
     expect_complete_user get_json['users'].select {|u| u['id'] == first.id}.first, user_params
     expect_filtered_user get_json['users'].select {|u| u['id'] == second.id}.first
+  end
+
+  it 'does not let anonymous users edit users' do
+    put api_user_path(user), user: {email: "new@email.com"}
+
+    expect(response.response_code).to eq(401)
+  end
+
+  it 'does not let users edit other users' do
+    other_user = FactoryGirl.create(:user, {email: '2@gmail.COM', screen_name: 'skeletor'})
+
+    put api_user_path(user), user_edit_params, user_auth_header(other_user)
+
+    expect(response.response_code).to eq(401)
+  end
+
+  it 'lets users edit themselves' do
+    put api_user_path(user), user_edit_params, user_auth_header(user)
+
+    expect(response.response_code).to eq(204)
+  end
+
+  def user_edit_params
+    edit_params = {
+      phone: "15555555555"
+    }
+
+    Hash[:user, edit_params].to_json
   end
 
   def expect_filtered_user user_json

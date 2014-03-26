@@ -1,4 +1,5 @@
 class Api::UsersController < Api::ApiController
+  before_filter :authenticate_user_from_token!, only: :update
 
   def index
     respond_with(ids_or_all(User.all))
@@ -21,9 +22,13 @@ class Api::UsersController < Api::ApiController
   end
 
   def update
+    if params[:id].to_i != current_user.id
+      return render json: string_to_error_document("Unauthorized. User id or authentication_token incorrect"), status: 401
+    end
+
     @user = User.find(params[:id])
 
-    if @user.update(params[:user].permit(signup_params))
+    if @user.update(params[:user].permit(update_params))
       respond_with(@user)
     else
       respond_with_error_document @user
@@ -50,6 +55,11 @@ private
     user_params.require(:first_name)
     user_params.require(:last_name)
     user_params.require(:screen_name)
+    user_params.permit(:email, :password, :first_name, :last_name, :screen_name, :phone)
+  end
+
+  def update_params
+    user_params = params.require(:user)
     user_params.permit(:email, :password, :first_name, :last_name, :screen_name, :phone)
   end
 
