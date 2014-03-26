@@ -28,8 +28,8 @@ class Api::UsersController < Api::ApiController
 
     @user = User.find(params[:id])
 
-    if @user.update(params[:user].permit(update_params))
-      respond_with(@user)
+    if @user.update(update_params)
+      render json: @user
     else
       respond_with_error_document @user
     end

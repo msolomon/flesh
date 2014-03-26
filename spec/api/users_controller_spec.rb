@@ -190,7 +190,9 @@ describe "User API" do
   it 'lets users edit themselves' do
     put api_user_path(user), user_edit_params, user_auth_header(user)
 
-    expect(response.response_code).to eq(204)
+    expect(response.response_code).to eq(200)
+    expect(User.find(user).phone).to eq("+15555555555")
+    expect(get_json['user']['phone']).to eq("+15555555555")
   end
 
   def user_edit_params
