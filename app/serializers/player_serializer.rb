@@ -17,7 +17,6 @@ class PlayerSerializer < ActiveModel::Serializer
     end
   end
 
-
   def include_human_code?
     is_me?(object.user)
   end
