@@ -12,15 +12,18 @@ class Api::UsersController < Api::ApiController
   def create
     @user = User.new(signup_params)
 
-    if @user.save
-      sign_in(:user, @user, store: false)
-
-      # UserMailer.welcome_email(@user).deliver
-
-      respond_with(:api, @user, status: :created)
-    else
-      respond_with_error_document @user
+    begin
+      @user.save!
+    rescue ActiveRecord::RecordInvalid, Exception => e
+      @user.errors[:base] << e.message
+      return respond_with_error_document @user
     end
+
+    sign_in(:user, @user, store: false)
+
+    # UserMailer.welcome_email(@user).deliver
+
+    respond_with(:api, @user, status: :created)
 
   end
 
@@ -31,11 +34,14 @@ class Api::UsersController < Api::ApiController
 
     @user = User.find(params[:id])
 
-    if @user.update(update_params)
-      render json: @user
-    else
-      respond_with_error_document @user
+    begin
+      @user.update! update_params
+    rescue ActiveRecord::RecordInvalid, Exception => e
+      @user.errors[:base] << e.message
+      return respond_with_error_document @user
     end
+
+    render json: @user
   end
 
   def reset_password
