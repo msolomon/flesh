@@ -2,7 +2,7 @@ class PlayerSerializer < ActiveModel::Serializer
   include SerializerMixin
   embed :ids, include: true
 
-  attributes :id, :user_id, :game_id, :status, :last_fed, :oz_status
+  attributes :id, :user_id, :game_id, :status, :last_fed, :oz_status, :human_code
   has_one :user
 
   def status
@@ -15,6 +15,11 @@ class PlayerSerializer < ActiveModel::Serializer
     else
       object.true_status
     end
+  end
+
+
+  def include_human_code?
+    is_me?(object.user)
   end
 
   def include_last_fed?

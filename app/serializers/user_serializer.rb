@@ -2,7 +2,8 @@ require 'digest/md5'
 
 class UserSerializer < ActiveModel::Serializer
   include SerializerMixin
-
+  embed :ids, include: true
+  
   attributes :id,
              :screen_name,
              :email,
@@ -11,11 +12,13 @@ class UserSerializer < ActiveModel::Serializer
              :first_name,
              :last_name,
              :phone,
-             :created_at
+             :created_at,
+             :player_ids
 
+  has_many :players
 
   def avatar_url
-    email_hash = Digest::MD5.hexdigest(object.email.downcase.gsub(/\w/, ''))
+    email_hash = Digest::MD5.hexdigest(object.email.downcase)
     "http://www.gravatar.com/avatar/#{email_hash}?d=retro"
   end
 
