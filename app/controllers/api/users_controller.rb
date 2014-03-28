@@ -14,6 +14,9 @@ class Api::UsersController < Api::ApiController
 
     if @user.save
       sign_in(:user, @user, store: false)
+
+      UserMailer.welcome_email(@user).deliver
+
       respond_with(:api, @user, status: :created)
     else
       respond_with_error_document @user
