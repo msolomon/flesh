@@ -21,7 +21,7 @@ class Api::UsersController < Api::ApiController
 
     sign_in(:user, @user, store: false)
 
-    # UserMailer.welcome_email(@user).deliver
+    UserMailer.welcome_email(@user).deliver
 
     respond_with(:api, @user, status: :created)
 
