@@ -41,7 +41,7 @@ production:
   adapter: postgresql
   encoding: unicode
   database: flesh_production
-  post: 5454
+  port: 5454
   pool: 20
   username: postgres
   password:
