@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
 
     resources :players
-    resources :games
+    resources :games do
+      get 'timeline', controller: :stats, action: :game_timeline, as: :timeline
+    end
     resources :organizations
     resources :tags
     resources :users
