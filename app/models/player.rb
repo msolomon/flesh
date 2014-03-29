@@ -44,11 +44,15 @@ class Player < ActiveRecord::Base
       status = :zombie
     end
 
-    unless status == :human || (last_fed && last_fed > ([Time.now, game.game_end].min - game.starve_time)) then
+    unless status == :human || (last_fed && [Time.now, game.game_end].min < starve_time) then
       status = :starved
     end
 
     status
+  end
+
+  def starve_time
+    last_fed + game.starve_time
   end
 
   def last_fed
