@@ -5,13 +5,15 @@ class Api::EventsController < Api::ApiController
   DEFAULT_LIMIT = 20
   DEFAULT_OFFSET = 0
 
+  EVENTABLE_MAP = {
+    game: Game,
+    user: User,
+    player: Player,
+    organization: Organization
+  }
+
   def events
-    respond_with_events({
-      game: Game,
-      user: User,
-      player: Player,
-      organization: Organization
-    }[params[:resource]])
+    respond_with_events(EVENTABLE_MAP[params[:resource]])
   end
   
 private
@@ -25,6 +27,7 @@ private
     params[:id].to_i
     params[:limit] ||= DEFAULT_LIMIT
     params[:offset] ||= DEFAULT_OFFSET
+    params[:resource] = params[:resource].to_sym
   end
 
 end
