@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   validates :screen_name, length: {in: 3..20}, uniqueness: { case_sensitive: false }
   validates :first_name, presence: true 
   validates :last_name, presence: true 
-  validates :phone, phone: :true
+  validates :phone, phone: :true, uniqueness: true, allow_nil: true
   # other fields validated by devise
 
 private
