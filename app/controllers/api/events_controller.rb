@@ -4,23 +4,16 @@ class Api::EventsController < Api::ApiController
 
   DEFAULT_LIMIT = 20
   DEFAULT_OFFSET = 0
+
+  def events
+    respond_with_events({
+      "game"         => Game,
+      "user"         => User,
+      "player"       => Player,
+      "organization" => Organization
+    }[params[:resource]])
+  end
   
-  def organizations
-    respond_with_events Organization
-  end
-
-  def users
-    respond_with_events User
-  end
-
-  def players
-    respond_with_events Player
-  end
-
-  def games
-    respond_with_events Game
-  end
-
 private
 
   def respond_with_events model

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       post :reset_password, only: :reset_password, path: 'reset_password'
     end
 
-    get 'events/:action/:id', controller: :events, as: :events
+    get 'events', controller: :events, as: :events
 
     post 'twilio/sms', controller: :twilio, action: :sms
 
