@@ -7,10 +7,10 @@ class Api::EventsController < Api::ApiController
 
   def events
     respond_with_events({
-      "game"         => Game,
-      "user"         => User,
-      "player"       => Player,
-      "organization" => Organization
+      game: Game,
+      user: User,
+      player: Player,
+      organization: Organization
     }[params[:resource]])
   end
   
