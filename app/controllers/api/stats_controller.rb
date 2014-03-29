@@ -14,9 +14,9 @@ class Api::StatsController < Api::ApiController
     count_as_tagged_zombie = lambda { |game_active_time, player|
       became_zombie_time = player.tagged_tag.created_at.to_i
 
-      count_as_human game_active_time
+      count_as_human.(game_active_time)
       human_counts[became_zombie_time] -= 1
-      count_as_zombie became_zombie_time 
+      count_as_zombie.(became_zombie_time)
     }
 
     count_as_zombie = lambda { |became_zombie_time|
@@ -30,14 +30,14 @@ class Api::StatsController < Api::ApiController
 
       case player.true_status
       when :oz
-        count_as_zombie game_active_time
+        count_as_zombie.(game_active_time)
       when :human
-        count_as_human game_active_time
+        count_as_human.(game_active_time)
       when :zombie
-        count_as_tagged_zombie game_active_time, player
+        count_as_tagged_zombie.(game_active_time, player)
       when :starved
         # TODO: account for OZs confirmed after game start instead of assuming all OZs assigned at join/game start
-        player.confirmedOZ? ? count_as_zombie(game_active_time) : count_as_tagged_zombie(game_active_time, player)
+        player.confirmedOZ? ? count_as_zombie.(game_active_time) : count_as_tagged_zombie.(game_active_time, player)
 
         starved_at = player.starve_time.to_i
         zombie_counts[starved_at] -= 1
