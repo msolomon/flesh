@@ -33,6 +33,10 @@ class Api::StatsController < Api::ApiController
       zombie_counts[became_zombie_time] += 1
     }
 
+    make_cumulative = lambda { |counts|
+      counts[1..-1].sort.reduce([counts.first]) { |memo, count| memo << [count.first, count.last + memo.last.last]}
+    }
+
     players = Player.where(game: game).includes(:tagged_tag)
 
     players.each { |player|
@@ -56,9 +60,9 @@ class Api::StatsController < Api::ApiController
     }
 
     render json: {
-      humans: human_counts.sort,
-      zombies: zombie_counts.sort,
-      starved: starved_counts.sort
+      humans: make_cumulative.(human_counts),
+      zombies: make_cumulative.(zombie_counts),
+      starved: make_cumulative.(starved_counts)
     }
 
   end
