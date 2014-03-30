@@ -2,6 +2,8 @@ class Tag < ActiveRecord::Base
   include ModelMixin
 
   after_create :record_tag_event
+
+  enum source: [:web, :sms]
   
   belongs_to :tagger, class_name: 'Player'
   belongs_to :taggee, class_name: 'Player'
@@ -26,6 +28,7 @@ private
   def record_tag_event
     event = Event.create(event_type: :tag, data: {
       tag_id: self.id,
+      source: self.source,
     })
 
     self.event = event

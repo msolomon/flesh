@@ -3,7 +3,7 @@ class TagSerializer < ActiveModel::Serializer
 
   embed :ids
 
-  attributes :id, :claimed
+  attributes :id, :claimed, :source
   
   has_one :tagger
   has_one :taggee

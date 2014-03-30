@@ -14,7 +14,7 @@ class Api::TagsController < Api::ApiController
         respond_with(:api, tag, status: :created)
       else
         respond_with_error_document(tag)
-      end
     end
   end
+end
 end
