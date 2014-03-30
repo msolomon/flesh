@@ -1,8 +1,6 @@
 class TagSerializer < ActiveModel::Serializer
   include SerializerMixin
   
-  OZ = "Original Zombie"
-
   embed :ids
 
   attributes :id, :claimed, :source
@@ -13,7 +11,7 @@ class TagSerializer < ActiveModel::Serializer
   def tagger
     tagger_player = object.tagger
     if !is_me?(tagger_player.user) && tagger_player.is_stealthed?
-      Player.new(id: 0, oz_status: :confirmed, user: User.new(screen_name: OZ, first_name: OZ, last_name: OZ, email: "flesh.io@monumentmail.com"))
+      Player.new(id: 0, oz_status: :confirmed)
     else
       tagger_player
     end

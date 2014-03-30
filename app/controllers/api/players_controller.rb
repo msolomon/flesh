@@ -1,6 +1,8 @@
 class Api::PlayersController < Api::ApiController
   before_filter :authenticate_user_from_token!, only: :create
 
+  OZ = "Original Zombie"
+
   def index
     if !params[:ids] then
       return respond_with_error_string "Player requests must specify player ids"
@@ -10,7 +12,10 @@ class Api::PlayersController < Api::ApiController
   end
 
   def show
-    respond_with(Player.includes(:user).find params[:id])
+    if params[:id].to_i == 0
+      respond_with(Player.new(id: 0, oz_status:confirmed, user: User.new(screen_name: OZ, first_name: OZ, last_name: OZ, email: "flesh.io@monumentmail.com")))
+    else
+      respond_with(Player.includes(:user).find params[:id])
   end
 
   def create
