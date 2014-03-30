@@ -22,6 +22,8 @@ class Player < ActiveRecord::Base
   has_many :event_links, as: :eventable
   has_many :events, through: :event_links
 
+  default_scope { order(id: :asc) }
+
 
   def canTag?
     return [:oz, :zombie].include? true_status
