@@ -1,4 +1,5 @@
 class EventSerializer < ActiveModel::Serializer
+  embed :ids, include: true
   attributes :id, :event_type, :created_at,
     :user_id,
     :game_id,
