@@ -160,6 +160,7 @@ GEM
     minitest (5.3.1)
     multi_json (1.9.2)
     multi_xml (0.5.5)
+    newrelic_rpm (3.7.3.204)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     obscenity (1.0.2)
@@ -275,6 +276,7 @@ DEPENDENCIES
   httparty
   jquery-rails
   minitest
+  newrelic_rpm
   nokogiri (~> 1.6.1)
   obscenity
   oj

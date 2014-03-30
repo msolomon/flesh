@@ -59,6 +59,7 @@ end
 group :production do
   gem 'thin'
   gem 'rails_12factor'
+  gem 'newrelic_rpm'
 end
 
 # For Static Assets and Logging
