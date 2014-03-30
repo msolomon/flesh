@@ -18,7 +18,7 @@ class PlayerSerializer < ActiveModel::Serializer
   end
 
   def include_human_code?
-    is_me?(object.user)
+    is_me?(object.user) && object.true_status == :human
   end
 
   def include_last_fed?
