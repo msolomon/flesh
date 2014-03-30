@@ -16,6 +16,7 @@ class Api::PlayersController < Api::ApiController
       respond_with(Player.new(id: 0, oz_status:confirmed, user: User.new(screen_name: OZ, first_name: OZ, last_name: OZ, email: "flesh.io@monumentmail.com")))
     else
       respond_with(Player.includes(:user).find params[:id])
+    end
   end
 
   def create
