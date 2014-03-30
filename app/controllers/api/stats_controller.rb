@@ -30,7 +30,7 @@ class Api::StatsController < Api::ApiController
 
     make_cumulative = lambda { |counts|
       counts_array = counts.sort
-      counts_array[1..-1].reduce([counts_array.first]) { |memo, count| memo << [count.first, count.last + memo.last.last]}
+      (counts_array[1..-1] || []).reduce([counts_array.first]) { |memo, count| memo << [count.first, count.last + memo.last.last]}
     }
 
     players = Player.where(game: game).includes(:tagged_tag)
