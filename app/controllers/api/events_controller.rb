@@ -18,6 +18,7 @@ class Api::EventsController < Api::ApiController
     when :player
       secret_events = get_secret_events_for_player(Player.find(params[:id]))
       respond_with_events player.events.where.not(secret_events)
+    end
   end
   
 private
