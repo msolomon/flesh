@@ -10,7 +10,7 @@ class Api::TwilioController < Api::ApiController
   COPY = { 
       unrecognized_number:       "this number is not in our system. To use sms commands vist your profile and add a phone number",
       unrecognized_command:      "unrecognized command.",
-      stats:                     "humans: %{humans} \nzombies: %{zombies} \nstarved: %{starved}",
+      stats:                     "humans: %{human} \nzombies: %{zombie} \nstarved: %{starved}",
       tag_success:               "%{taggee_screen_name} was successfully tagged",
       something_went_wrong:      "something went wrong : / \nif the problem persist, try tagging from the website"
   }

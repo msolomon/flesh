@@ -6,7 +6,7 @@ module StatsHelper
     .inject(Hash.new(0)) { |total, e| 
       total[e.true_status] += 1; total
     }
-    [:oz, :humans, :zombies, :starved].each { |status| 
+    [:oz, :human, :zombie, :starved].each { |status| 
       totals[status] += 0
     }
     totals[:zombie] += totals[:oz]
