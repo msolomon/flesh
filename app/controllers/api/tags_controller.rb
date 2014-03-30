@@ -4,7 +4,7 @@ class Api::TagsController < Api::ApiController
   def create
     params.require(:tag).permit(:human_code)
     human_code = params[:tag][:human_code]
-    try = TagsHelper.create(current_user, human_code)
+    try = TagsHelper.create(current_user, human_code, :web)
 
     if try.error?
       respond_with_error_string(try.error)

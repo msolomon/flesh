@@ -52,7 +52,7 @@ class Api::TwilioController < Api::ApiController
       current_game = Game.find(1)
       template(:stats, StatsHelper.totals(current_game))
     elsif command == "tag"
-      try = TagsHelper.create(user, argument)
+      try = TagsHelper.create(user, argument, :sms)
       if try.error?
         try.error
       else

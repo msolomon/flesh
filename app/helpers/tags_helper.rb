@@ -1,5 +1,5 @@
 module TagsHelper
-  def self.create(tagger_user, human_code)
+  def self.create(tagger_user, human_code, source)
 
     if !human_code
       return Try.error("Missing human code")
@@ -29,6 +29,6 @@ module TagsHelper
       return Try.error("You cannot tag because you are #{tagger.true_status}")
     end
 
-    return Try.success(Tag.new(tagger: tagger, taggee: taggee, claimed: Time.now))
+    return Try.success(Tag.new(tagger: tagger, taggee: taggee, claimed: Time.now, source: source))
   end
 end
