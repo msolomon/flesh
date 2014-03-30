@@ -22,6 +22,8 @@ class Player < ActiveRecord::Base
   has_many :event_links, as: :eventable
   has_many :events, through: :event_links
 
+  default_scope { order(id: :asc) }
+
 
   def canTag?
     return [:oz, :zombie].include? true_status
@@ -29,6 +31,10 @@ class Player < ActiveRecord::Base
 
   def canBeTagged?
     true_status == :human
+  end
+
+  def confirmedOZ?
+    oz_status.to_sym == :confirmed
   end
 
   def is_stealthed?
@@ -44,11 +50,15 @@ class Player < ActiveRecord::Base
       status = :zombie
     end
 
-    unless status == :human || (last_fed && last_fed > (Time.now - game.starve_time)) then
+    unless status == :human || (last_fed && [Time.now, game.game_end].min < starve_time) then
       status = :starved
     end
 
     status
+  end
+
+  def starve_time
+    last_fed + game.starve_time
   end
 
   def last_fed
