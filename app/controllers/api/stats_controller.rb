@@ -2,7 +2,7 @@ class Api::StatsController < Api::ApiController
 
   def game_stats
     game = Game.find(params[:game_id])
-    render json: totals(game)
+    render json: StatsHelper.totals(game)
   end
   
   def game_timeline
@@ -29,7 +29,7 @@ class Api::StatsController < Api::ApiController
     }
 
     make_cumulative = lambda { |counts|
-      counts[1..-1].sort.reduce([counts.first]) { |memo, count| memo << [count.first, count.last + memo.last.last]}
+      counts[1..-1].sort.reduce([counts.first]) { |memo, count| memo << [count.first, count.last + memo.last.last]} rescue []
     }
 
     players = Player.where(game: game).includes(:tagged_tag)
