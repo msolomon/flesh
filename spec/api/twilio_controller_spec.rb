@@ -41,14 +41,21 @@ describe Api::TwilioController do
     end
   
     it 'can get stats' do
-      game  = FactoryGirl.create(:game)
+      game = FactoryGirl.create(:game, {
+        id: '1',
+        registration_start: Time.now()
+      })
+      player  = FactoryGirl.create(:player, {
+        game: game,
+      })
       user  = FactoryGirl.create(:user, { 
         email: "z@z.com", 
         screen_name: "zombocom",
-        phone:  KNOWN_NUMBER
+        phone:  KNOWN_NUMBER,
+        players: [player]
       })
       sms_from_known_number("stats")
-      expect(parse_twiml(response)).to eq(subject.template(:stats, subject.stats_data))
+      expect(parse_twiml(response)).to eq(subject.template(:stats, StatsHelper.totals(game)))
     end
 
     it 'can tag' do
@@ -140,14 +147,9 @@ describe Api::TwilioController do
       expect(parse_twiml(response)).to eq(subject.template(:unrecognized_number))
     end
   
-    # For now, we only have one game, so texting stats from
-    # An unknown number will return the stats, in the future
-    # this won't work. You will either have to be a registered
-    # number so we can look up your game or text "stats " + game_slug
-    it 'can request stats' do
+    it 'cant request stats' do
       sms_from_unknown_number("stats")
-      game   = FactoryGirl.create(:game)
-      expect(parse_twiml(response)).to eq(subject.template(:stats, subject.stats_data))
+      expect(parse_twiml(response)).to eq(subject.template(:unrecognized_number))
     end
 
     it 'cannot tag' do

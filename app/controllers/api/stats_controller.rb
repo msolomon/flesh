@@ -2,12 +2,7 @@ class Api::StatsController < Api::ApiController
 
   def game_stats
     game = Game.find(params[:game_id])
-    totals = Player.where(game: game).includes(:tagged_tag).inject(Hash.new(0)) { |total, e| total[e.true_status] += 1; total}
-    [:oz, :human, :zombie, :starved].each {|status| totals[status] += 0}
-    totals[:zombie] += totals[:oz]
-    totals.delete :oz
-
-    render json: totals
+    render json: totals(game)
   end
   
   def game_timeline
