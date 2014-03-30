@@ -13,7 +13,12 @@ class Api::PlayersController < Api::ApiController
 
   def show
     if params[:id].to_i == 0
-      respond_with(Player.new(id: 0, oz_status: :confirmed, user: User.new(screen_name: OZ, first_name: OZ, last_name: OZ, email: "flesh.io@monumentmail.com")))
+      # TODO: do something less hacky
+      user = User.new(id: 0, screen_name: OZ, first_name: OZ, last_name: OZ, email: "flesh.io@monumentmail.com")
+      player = Player.new(id: 0, user_id: 0, oz_status: :confirmed, user: user)
+      def player.true_status; :zombie end
+      def player.last_fed; Time.now end
+      respond_with(player)
     else
       respond_with(Player.includes(:user).find params[:id])
     end
