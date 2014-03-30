@@ -156,9 +156,12 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mini_portile (0.5.3)
     minitest (5.3.1)
     multi_json (1.9.2)
     multi_xml (0.5.5)
+    nokogiri (1.6.1)
+      mini_portile (~> 0.5.0)
     obscenity (1.0.2)
     oj (2.6.1)
     orm_adapter (0.5.0)
@@ -272,6 +275,7 @@ DEPENDENCIES
   httparty
   jquery-rails
   minitest
+  nokogiri (~> 1.6.1)
   obscenity
   oj
   pg
