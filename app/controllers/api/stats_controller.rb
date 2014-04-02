@@ -37,7 +37,7 @@ class Api::StatsController < Api::ApiController
     players = Player.where(game: game).includes(:tagged_tag)
 
     players.each { |player|
-      game_active_time = [player.created_at, game.game_start].max.to_i
+      game_active_time = game.registration_start.to_i
 
       case player.true_status
       when :oz
