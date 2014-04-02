@@ -16,6 +16,10 @@ class Api::StatsController < Api::ApiController
       human_counts[game_active_time] += 1
     }
 
+    count_as_zombie = lambda { |became_zombie_time|
+      zombie_counts[became_zombie_time] += 1
+    }
+
     count_as_tagged_zombie = lambda { |game_active_time, player|
       became_zombie_time = player.tagged_tag.created_at.to_i
 
@@ -24,9 +28,6 @@ class Api::StatsController < Api::ApiController
       count_as_zombie.(became_zombie_time)
     }
 
-    count_as_zombie = lambda { |became_zombie_time|
-      zombie_counts[became_zombie_time] += 1
-    }
 
     make_cumulative = lambda { |counts|
       counts_array = counts.sort
