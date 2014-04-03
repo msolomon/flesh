@@ -62,10 +62,10 @@ group :production do
   gem 'newrelic_rpm'
 end
 
-# For Static Assets and Logging
 gem 'haml', '~> 4.0'
 gem 'devise', '~> 3.2'
 gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'memoist'
 
 gem "formtastic", github: "justinfrench/formtastic"
 gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.1'
