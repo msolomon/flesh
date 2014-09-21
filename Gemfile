@@ -65,6 +65,7 @@ end
 gem 'haml', '~> 4.0'
 gem 'devise', '~> 3.2'
 gem 'activeadmin', github: 'activeadmin'
+gem 'activeadmin_hstore_editor'
 gem 'memoist'
 
 # gem "formtastic", github: "justinfrench/formtastic"

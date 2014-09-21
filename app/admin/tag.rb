@@ -4,20 +4,23 @@ ActiveAdmin.register Tag do
   filter :claimed
 
   index do
+    column :tagger
+    column :taggee
     column :claimed
+    column :source
   end
 
-  # See permitted parameters documentation:
-  # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #  permitted = [:permitted, :attributes]
-  #  permitted << :other if resource.something?
-  #  permitted
-  # end
-  
+  controller do
+    def new
+      super do |format|
+        @tag.source = :admin
+      end
+    end
+    def edit
+      super do |format|
+        @tag.source = :admin
+      end
+    end
+  end
+
 end

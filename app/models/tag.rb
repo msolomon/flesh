@@ -3,8 +3,8 @@ class Tag < ActiveRecord::Base
 
   after_create :record_tag_event
 
-  enum source: [:web, :sms]
-  
+  enum source: [:web, :sms, :admin]
+
   belongs_to :tagger, class_name: 'Player'
   belongs_to :taggee, class_name: 'Player'
 

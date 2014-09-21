@@ -3,7 +3,7 @@ require 'securerandom'
 
 class Player < ActiveRecord::Base
   include ModelMixin
-  
+
   before_validation :ensure_human_code
 
   after_create :record_join_event
@@ -71,7 +71,7 @@ class Player < ActiveRecord::Base
       elsif tagged_tag then
         most_recent_feeding = tagged_tag.claimed
       end
-        
+
     elsif most_recent_feeding
       most_recent_feeding.claimed
     end
