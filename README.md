@@ -9,7 +9,7 @@
 1. Edit config/database.yml "development" to match your Postgres setup
 1. Install rvm or rbenv
 1. Install Ruby 2.1
-1. If using RVM, `rvm use gemset flesh --create`
+1. If using RVM, `rvm use 2.1@flesh --create`
 1. Then run some commands:
 
 ```bash

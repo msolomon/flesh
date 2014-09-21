@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.1.0.rc2'
+gem 'rails', '~> 4.1.5'
 gem 'pg'
 
 # Use SCSS for stylesheets
@@ -41,7 +41,7 @@ group :development, :test do
   gem 'rspec-rails', '2.14.0'
   gem 'factory_girl_rails', '4.2.0'
   gem 'watchr'
-  gem 'debugger'
+  gem 'debugger2'
   gem 'faker'
 end
 
@@ -64,11 +64,11 @@ end
 
 gem 'haml', '~> 4.0'
 gem 'devise', '~> 3.2'
-gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'activeadmin', github: 'activeadmin'
 gem 'memoist'
 
-gem "formtastic", github: "justinfrench/formtastic"
-gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.1'
+# gem "formtastic", github: "justinfrench/formtastic"
+# gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.1'
 gem 'populator'
 gem 'oj'
 gem 'httparty'
