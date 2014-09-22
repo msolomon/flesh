@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   include ApplicationHelper
-  
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -15,5 +15,9 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up).concat [:username, :last_name, :phone]
   end
-  
+
+  def access_denied(exception)
+    redirect_to admin_organizations_path, alert: exception.message
+  end
+
 end
