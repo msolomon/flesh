@@ -24,9 +24,9 @@ class Api::TwilioController < Api::ApiController
     end
 
     command, argument = params[:Body].split(' ', 2)
-    user = User.where(phone: params[:From])
+    user = User.find_by(phone: params[:From])
 
-    if user.empty?
+    if user.nil?
       response = template(:unrecognized_number)
     else
       response = response_for_known_number(command, argument, user)
@@ -48,10 +48,10 @@ class Api::TwilioController < Api::ApiController
   def response_for_known_number(command, argument, user)
     if command == "stats"
       active_game = user.active_player.game rescue nil
-      if active_game
-        template(:stats, StatsHelper.totals(active_game))
-      else
+      if active_game.nil?
         template(:not_part_of_game)
+      else
+        template(:stats, StatsHelper.totals(active_game))
       end
     elsif command == "tag"
       try = TagsHelper.create(user, argument, :sms)
