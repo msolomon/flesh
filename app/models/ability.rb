@@ -8,6 +8,7 @@ class Ability
 
     if user.admin?
       can :manage, :all
+      can :read, ActiveAdmin::Page, name: "Dashboard"
     else
       can :read, Organization
       can :read, Game
