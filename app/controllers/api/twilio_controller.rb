@@ -7,21 +7,22 @@ class Api::TwilioController < Api::ApiController
 
   after_filter :set_header
 
-  COPY = { 
-      unrecognized_number:       "this number is not in our system. To use sms commands vist your profile and add a phone number",
-      unrecognized_command:      "unrecognized command.",
-      stats:                     "humans: %{human} \nzombies: %{zombie} \nstarved: %{starved}",
-      tag_success:               "%{taggee_screen_name} was successfully tagged",
-      something_went_wrong:      "something went wrong : / \nif the problem persist, try tagging from the website"
+  COPY = {
+      unrecognized_number:       "This number is not in our system. To use SMS commands, vist your profile at flesh.io and add a phone number",
+      unrecognized_command:      "Unrecognized command.",
+      stats:                     "Humans: %{human} \nZombies: %{zombie} \nStarved: %{starved}",
+      tag_success:               "You have fed upon %{taggee_screen_name}!",
+      something_went_wrong:      "Something went wrong. \nIf the problem persists, try tagging from the website.",
+      not_part_of_game:          "Please join a game at flesh.io before requesting stats!"
   }
 
   # Handle an sms request from Twilio
-  def sms    
+  def sms
     if !params[:From]
       # Bogus request, respond with HTTP error not sms error
-      respond_with_error_string "sms requests must contain a From parameter"
+      respond_with_error_string "SMS requests must contain a From parameter"
     end
-    
+
     command, argument = params[:Body].split(' ', 2)
     user = User.where(phone: params[:From])
 
@@ -36,7 +37,7 @@ class Api::TwilioController < Api::ApiController
     end
 
     # Render a response back to Twilio
-    # in TwiML format. The TwiML instructs 
+    # in TwiML format. The TwiML instructs
     # Twilio to respond back to the user, so
     # we don't have fire off a seperate request
     # to respond
@@ -46,11 +47,12 @@ class Api::TwilioController < Api::ApiController
   # handle all responses for a number that's connected to a user
   def response_for_known_number(command, argument, user)
     if command == "stats"
-      # can't figure out how to get the
-      # current game and it's 2am so this is
-      # it for now. TODO fix
-      current_game = Game.find(1)
-      template(:stats, StatsHelper.totals(current_game))
+      active_game = user.active_player.game rescue nil
+      if active_game
+        template(:stats, StatsHelper.totals(active_game))
+      else
+        template(:not_part_of_game)
+      end
     elsif command == "tag"
       try = TagsHelper.create(user, argument, :sms)
       if try.error?
@@ -63,13 +65,13 @@ class Api::TwilioController < Api::ApiController
           template(:something_went_wrong)
         end
       end
-    else 
+    else
       template(:unrecognized_command)
     end
   end
 
   # cool ruby string substitution trick
-  # template = "Price of the %{product} is Rs. %{price}." 
+  # template = "Price of the %{product} is Rs. %{price}."
   # template % {product:"apple", price:70.00}
   # > Price of the apple is Rs. 70.0.
   def template(key, data = {})
@@ -78,6 +80,6 @@ class Api::TwilioController < Api::ApiController
 
   def get_twilio_client
     secrets = Rails.application.secets
-    @client = Twilio::REST::Client.new(ENV[‘TWILIO_ACCOUNT_SID’], ENV[‘TWILIO_AUTH_TOKEN’])  
+    @client = Twilio::REST::Client.new(ENV[‘TWILIO_ACCOUNT_SID’], ENV[‘TWILIO_AUTH_TOKEN’])
   end
 end

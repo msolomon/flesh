@@ -24,8 +24,7 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def active_player_id
-    # TODO: do something smarter than returning the highest ID player
-    object.players.last.id rescue nil
+    object.active_player.id rescue nil
   end
 
   def include_email?

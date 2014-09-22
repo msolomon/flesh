@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, 
+  devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :players
@@ -19,10 +19,15 @@ class User < ActiveRecord::Base
   has_many :events, through: :event_links
 
   validates :screen_name, length: {in: 3..20}, uniqueness: { case_sensitive: false }
-  validates :first_name, presence: true 
-  validates :last_name, presence: true 
+  validates :first_name, presence: true
+  validates :last_name, presence: true
   validates :phone, phone: :true, uniqueness: true, allow_nil: true
-  # other fields validated by devise
+  # other fields are validated by devise
+
+  def active_player
+    # TODO: do something smarter than returning the highest ID player
+    self.players.last
+  end
 
 private
   def generate_authentication_token
@@ -44,7 +49,7 @@ private
 
   def reformat_phone
     return if self.phone == nil
-    
+
     numbers_only = self.phone.gsub /\D/, ''
 
     case numbers_only.length
