@@ -12,6 +12,15 @@ ActiveAdmin.register User do
 
   filter :email
 
+  controller do
+    def update
+      if params[:user][:password].blank?
+        params[:user].delete("password")
+      end
+      super
+    end
+  end
+
   form do |f|
     f.inputs "Admin Details" do
       f.input :email
