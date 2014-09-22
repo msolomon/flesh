@@ -3,7 +3,7 @@ require 'digest/md5'
 class UserSerializer < ActiveModel::Serializer
   include SerializerMixin
   embed :ids, include: true
-  
+
   attributes :id,
              :screen_name,
              :email,
@@ -13,6 +13,7 @@ class UserSerializer < ActiveModel::Serializer
              :last_name,
              :phone,
              :created_at,
+             :active_player_id,
              :player_ids
 
   has_many :players
@@ -20,6 +21,11 @@ class UserSerializer < ActiveModel::Serializer
   def avatar_url
     email_hash = Digest::MD5.hexdigest(object.email.downcase)
     "https://www.gravatar.com/avatar/#{email_hash}?d=retro&s=200"
+  end
+
+  def active_player_id
+    # TODO: do something smarter than returning the highest ID player
+    object.players.last.id rescue nil
   end
 
   def include_email?
