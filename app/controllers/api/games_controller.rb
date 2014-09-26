@@ -9,7 +9,13 @@ class Api::GamesController < Api::ApiController
   end
 
   def emails
-    respond_with(Game.where(id: params[:game_id]).joins(:players).joins(:users).pluck(:email))
+    email_info = Game
+      .where(id: params[:game_id])
+      .joins(:players)
+      .joins(:users)
+      .distinct()
+      .pluck(:first_name, :last_name, :email)
+    respond_with(email_info.map { |u| "#{u[0]} #{u[1]} <#{u[2]}>" })
   end
 
 end
