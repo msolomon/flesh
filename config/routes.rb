@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :games do
       get 'timeline', controller: :stats, action: :game_timeline, as: :timeline
       get 'stats', controller: :stats, action: :game_stats, as: :stats
+      get 'emails', action: :emails, as: :emails
     end
     resources :organizations
     resources :tags
