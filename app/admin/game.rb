@@ -23,10 +23,10 @@ ActiveAdmin.register Game do
       f.input :name
       f.input :slug
       f.input :timezone
-      f.input :registration_start, as: :time_picker
-      f.input :registration_end, as: :time_picker
-      f.input :game_start, as: :time_picker
-      f.input :game_end, as: :time_picker
+      f.input :registration_start, as: :string
+      f.input :registration_end, as: :string
+      f.input :game_start, as: :string
+      f.input :game_end, as: :string
       f.input :description
       f.input :options
     end
