@@ -1,3 +1,5 @@
+//= require active_admin/hstore_editor
+
 // SASS variable overrides must be declared before loading up Active Admin's styles.
 //
 // To view the variables that Active Admin provides, take a look at
@@ -15,5 +17,3 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
-
-*= require active_admin/hstore_editor
