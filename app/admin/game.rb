@@ -16,4 +16,20 @@ ActiveAdmin.register Game do
   remove_filter :game_end
   remove_filter :users
   remove_filter :players
+
+  form do |f|
+    f.inputs "Admin Details" do
+      f.input :organization
+      f.input :name
+      f.input :slug
+      f.input :timezone
+      f.input :registration_start
+      f.input :registration_end
+      f.input :game_start
+      f.input :game_end
+      f.input :description
+      f.input :options
+    end
+    f.actions
+  end
 end

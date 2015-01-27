@@ -1,12 +1,13 @@
 class Game < ActiveRecord::Base
   include ModelMixin
-  
   belongs_to :organization
   has_many :players
   has_many :users, through: :players
 
   has_many :event_links, as: :eventable
   has_many :events, through: :event_links
+
+  default_scope { order(game_end: :desc) }
 
   hstore_accessor :options,
                   starve_time: :integer,
@@ -41,7 +42,7 @@ class Game < ActiveRecord::Base
     elsif registration_end < Time.now
       "The registration period has already ended"
     end
-        
+
   end
-  
+
 end
