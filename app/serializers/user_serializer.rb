@@ -14,6 +14,7 @@ class UserSerializer < ActiveModel::Serializer
              :phone,
              :created_at,
              :active_player_id,
+             :active_game_id,
              :player_ids
 
   has_many :players
@@ -25,6 +26,11 @@ class UserSerializer < ActiveModel::Serializer
 
   def active_player_id
     object.active_player.id rescue nil
+  end
+
+  # TODO: make the clients deep dive through active player id instead
+  def active_game_id
+    object.active_player.game_id rescue nil
   end
 
   def include_email?
