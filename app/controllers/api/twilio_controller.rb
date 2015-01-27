@@ -23,7 +23,7 @@ class Api::TwilioController < Api::ApiController
       respond_with_error_string "SMS requests must contain a From parameter"
     end
 
-    command, argument = params[:Body].downcase.gsub(/[a-z0-9 ]/, '').split(' ', 2)
+    command, argument = params[:Body].downcase.gsub(/[^a-z0-9 ]/, '').split(' ', 2)
     user = User.find_by(phone: params[:From])
 
     if user.nil?
